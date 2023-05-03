@@ -26,7 +26,7 @@ struct FullRowView: View {
                 
                 
             }
-            .background(Color.backgroundColor)
+            .background(color)
             .ignoresSafeArea()
             Button{
                 withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
@@ -43,13 +43,28 @@ struct FullRowView: View {
             .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .topTrailing)
             .padding(30)
             .ignoresSafeArea()
+            VStack{
+                List(project.tasks){task in
+                    Text(task.name)
+                        .listRowBackground(Color.clear)
+                        .padding(10)
+                    
+                }
+                .listStyle(.plain)
+                
+            }
+            .background(
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+                    .mask(RoundedRectangle(cornerRadius: 40,style: .continuous))
+                   
+            )
+            .offset(y:400)
         }
     }
     var cover: some View{
         VStack{
-            Spacer()
-            
-           
+           Spacer()
           
         }
         .frame(maxWidth: .infinity)
@@ -63,6 +78,7 @@ struct FullRowView: View {
                 .matchedGeometryEffect(id: "\(project.name)mask", in: nameSpace)
         }
         .overlay(
+            VStack(alignment: .center){
             ZStack{
                 VStack{
                     VStack(alignment: .leading, spacing: 12){
@@ -92,18 +108,8 @@ struct FullRowView: View {
                     )
                     .padding(.vertical,20)
                    
-                        List(project.tasks){task in
-                            Text(task.name)
-                                .listRowBackground(Color.clear)
-                            
-                        }
-                        .listStyle(PlainListStyle())
-                        .background(
-                            Rectangle()
-                                .fill(.ultraThinMaterial)
-                                .mask(RoundedRectangle(cornerRadius: 10,style: .circular))
-                        )
-                        .frame(maxHeight: .infinity)
+                      
+                        
                     
                 }
             
@@ -124,7 +130,8 @@ struct FullRowView: View {
                 
             }
                 .offset(y:180)
-               
+                
+            }
         )
    
  
