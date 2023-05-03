@@ -22,6 +22,8 @@ struct FullRowView: View {
         ZStack {
             ScrollView {
                 cover
+         
+                
                 
             }
             .background(Color.backgroundColor)
@@ -46,11 +48,12 @@ struct FullRowView: View {
     var cover: some View{
         VStack{
             Spacer()
+            
            
           
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 500)
+        .frame(height: 300)
         .foregroundStyle(.white)
         .background(
             color.matchedGeometryEffect(id: "\(project.name)BackgroundColor", in: nameSpace)
@@ -60,41 +63,67 @@ struct FullRowView: View {
                 .matchedGeometryEffect(id: "\(project.name)mask", in: nameSpace)
         }
         .overlay(
-            VStack(alignment: .leading, spacing: 12){
-                
-                Text(project.name)
-                .font(.largeTitle.weight(.bold))
-                .matchedGeometryEffect(id: "\(project.name)name", in: nameSpace)
-                .frame(maxWidth:.infinity,alignment: .leading)
-                
-                Text("\(project.madeTasks.count)/\(project.tasks.count) Tasks")
-                    .font(.title3.weight(.semibold))
-                    .matchedGeometryEffect(id: "\(project.name)madeText", in: nameSpace)
-                Text(project.description)
-                    .font(.footnote.weight(.light))
-                    .matchedGeometryEffect(id: "\(project.name)description", in: nameSpace)
-                Divider()
-                HStack{
-                    Button("Add"){
+            ZStack{
+                VStack{
+                    VStack(alignment: .leading, spacing: 12){
+                        
+                        Text(project.name)
+                            .font(.largeTitle.weight(.bold))
+                            .matchedGeometryEffect(id: "\(project.name)name", in: nameSpace)
+                            .frame(maxWidth:.infinity,alignment: .leading)
+                        
+                        Text("\(project.madeTasks.count)/\(project.tasks.count) Tasks")
+                            .font(.title3.weight(.semibold))
+                            .matchedGeometryEffect(id: "\(project.name)madeText", in: nameSpace)
+                        Text(project.description)
+                            .font(.footnote.weight(.light))
+                            .matchedGeometryEffect(id: "\(project.name)description", in: nameSpace)
+                        
+                        
+                        
                         
                     }
+                    .padding(20)
+                    .background(
+                        Rectangle()
+                            .fill(.ultraThinMaterial)
+                            .mask(RoundedRectangle(cornerRadius: 30,style: .continuous))
+                            .matchedGeometryEffect(id: "\(project.name)blur", in: nameSpace)
+                    )
+                    .padding(.vertical,20)
+                   
+                        List(project.tasks){task in
+                            Text(task.name)
+                                .listRowBackground(Color.clear)
+                            
+                        }
+                        .listStyle(PlainListStyle())
+                        .background(
+                            Rectangle()
+                                .fill(.ultraThinMaterial)
+                                .mask(RoundedRectangle(cornerRadius: 10,style: .circular))
+                        )
+                        .frame(maxHeight: .infinity)
+                    
                 }
-                Divider()
-                List(project.tasks){task in
-                    Text(task.name)
-                        .listRowBackground(Color.clear)
-                }
-                .listStyle(PlainListStyle())
+            
+               
+              
+                   
+                        Button{
+                            
+                        }label: {
+                            Image(systemName: "plus")
+                                .font(.largeTitle.weight(.bold))
+                                .foregroundColor(.secondary)
+                                .padding(20)
+                                .background(.ultraThinMaterial,in:Circle())
+                        }
+                        .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
+                        .offset(y:70)
                 
             }
-                .padding(20)
-                .background(
-                Rectangle()
-                    .fill(.ultraThinMaterial)
-                    .mask(RoundedRectangle(cornerRadius: 30,style: .continuous))
-                    .matchedGeometryEffect(id: "\(project.name)blur", in: nameSpace)
-                )
-                .offset(y:250)
+                .offset(y:180)
                
         )
    
