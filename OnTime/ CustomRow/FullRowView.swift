@@ -43,24 +43,20 @@ struct FullRowView: View {
             .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .topTrailing)
             .padding(30)
             .ignoresSafeArea()
-            VStack{
-                List(project.tasks){task in
-                    Text(task.name)
-                        .listRowBackground(Color.clear)
-                        .padding(10)
-                    
-                }
-                .listStyle(.plain)
+            ScrollView{
+                
                 
             }
             .background(
                 Rectangle()
                     .fill(.ultraThinMaterial)
                     .mask(RoundedRectangle(cornerRadius: 40,style: .continuous))
-                   
+                
             )
             .padding(.horizontal,10)
-            .offset(y:400)
+            .frame(maxHeight: .infinity)
+            .offset(y:300)
+           
         }
     }
     var cover: some View{
@@ -133,7 +129,7 @@ struct FullRowView: View {
                         .offset(y:70)
                 
             }
-                .offset(y:180)
+                .offset(y:80)
                 
             }
         )
