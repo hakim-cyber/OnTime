@@ -59,6 +59,7 @@ struct FullRowView: View {
                     .mask(RoundedRectangle(cornerRadius: 40,style: .continuous))
                    
             )
+            .padding(.horizontal,10)
             .offset(y:400)
         }
     }
@@ -72,11 +73,13 @@ struct FullRowView: View {
         .foregroundStyle(.white)
         .background(
             color.matchedGeometryEffect(id: "\(project.name)BackgroundColor", in: nameSpace)
+               
         )
         .mask{
             RoundedRectangle(cornerRadius: 30,style: .continuous)
                 .matchedGeometryEffect(id: "\(project.name)mask", in: nameSpace)
         }
+     
         .overlay(
             VStack(alignment: .center){
             ZStack{
@@ -107,6 +110,7 @@ struct FullRowView: View {
                             .matchedGeometryEffect(id: "\(project.name)blur", in: nameSpace)
                     )
                     .padding(.vertical,20)
+                    .padding(.horizontal,10)
                    
                       
                         

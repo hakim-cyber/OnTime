@@ -33,6 +33,7 @@ struct MainView: View {
                                     }
                                     
                                 }
+                                .shadow(radius: 40)
                         
                            
                     }
