@@ -11,11 +11,8 @@ struct FullRowView: View {
     var project:Project
     
     var nameSpace:Namespace.ID
-    
-    @Binding var showFull:Bool
-    
-  
     var color:Color
+    var close:()-> Void
     
     var body: some View {
         
@@ -30,7 +27,9 @@ struct FullRowView: View {
             .ignoresSafeArea()
             Button{
                 withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
-                    showFull.toggle()
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                       close()
+                    }
                 }
             }label: {
                 Image(systemName: "xmark")
@@ -38,11 +37,13 @@ struct FullRowView: View {
                     .foregroundColor(.secondary)
                     .padding(8)
                     .background(.ultraThinMaterial,in:Circle())
+                    .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .topTrailing)
+                    .padding(.horizontal,30)
+                    .padding(.vertical,50)
+                    .ignoresSafeArea()
                     
             }
-            .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .topTrailing)
-            .padding(30)
-            .ignoresSafeArea()
+            
             ScrollView{
                 
                 
@@ -142,6 +143,8 @@ struct FullRowView: View {
 struct FullRowView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        FullRowView(project: Project.example, nameSpace: namespace, showFull: .constant(true),color: Color.indigo)
+        FullRowView(project: Project.example, nameSpace: namespace, color: Color.indigo, close: {})
+            
+        
     }
 }

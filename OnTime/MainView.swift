@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var Projects:ProjectsArray
-  @State  var colors = [Color.red, Color.blue, Color.green, Color.orange, Color.yellow,Color.indigo]
+    
     @Namespace var nameSpace
     @State private var selected:Project?
     @State var selectedColor:Color?
@@ -20,31 +20,41 @@ struct MainView: View {
             Color.backgroundColor.ignoresSafeArea()
             
             ScrollView{
-                if !showFull{
+             
                     ForEach(Projects.example){project in
-                        let selectedcolor = colors.randomElement()!
+                        let selectedcolor = Color.randomColor()
                         
-                            RowView(project: project, nameSpace: nameSpace, showFull: $showFull,color: selectedcolor)
-                                .onTapGesture {
-                                    withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
+                        RowView(project: project, nameSpace: nameSpace, showFull: $showFull,color: selectedcolor)
+                            
+                            .opacity(showFull ? 0:1)
+                            .shadow(radius: 40)
+                            .onTapGesture {
+                                withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
+                                    withAnimation(.easeInOut(duration: 0.5)) {
                                         selected = project
                                         selectedColor = selectedcolor
-                                        showFull.toggle()
+                                        
+                                        showFull = true
                                     }
-                                    
                                 }
-                                .shadow(radius: 40)
+                                
+                            }
                         
-                           
+                        
                     }
-                }
+                
+                
             }
             .coordinateSpace(name: "scroll")
             .safeAreaInset(edge: .top, content: {Color.clear.frame(height: 70)})
             if showFull{
                 if let selected = selected{
                     if let selectedColor = selectedColor{
-                        FullRowView(project: selected, nameSpace: nameSpace, showFull: $showFull,color: selectedColor)
+                        FullRowView(project: selected, nameSpace: nameSpace,color: selectedColor){
+                            
+                            showFull = false
+                            
+                        }
                     }
                 }
             }

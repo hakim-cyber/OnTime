@@ -37,7 +37,7 @@ struct RowView: View {
             Rectangle()
                 .fill(.ultraThinMaterial)
                 .mask(RoundedRectangle(cornerRadius: 30,style: .continuous))
-                .blur(radius: 30)
+               
                 .matchedGeometryEffect(id: "\(project.name)blur", in: nameSpace)
             )
         }
