@@ -9,9 +9,10 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var Projects:ProjectsArray
-    
+  @State  var colors = [Color.red, Color.blue, Color.green, Color.orange, Color.yellow,Color.indigo]
     @Namespace var nameSpace
-    
+    @State private var selected:Project?
+    @State var selectedColor:Color?
     @State  var showFull = false
     
     var body: some View {
@@ -20,21 +21,31 @@ struct MainView: View {
             
             ScrollView{
                 if !showFull{
-                    
-                    RowView(project: Project.example, nameSpace: nameSpace, showFull: $showFull)
-                            .onTapGesture {
-                                withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
-                                    showFull.toggle()
+                    ForEach(Projects.example){project in
+                        let selectedcolor = colors.randomElement()!
+                        
+                            RowView(project: project, nameSpace: nameSpace, showFull: $showFull,color: selectedcolor)
+                                .onTapGesture {
+                                    withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
+                                        selected = project
+                                        selectedColor = selectedcolor
+                                        showFull.toggle()
+                                    }
+                                    
                                 }
-                                
-                            }
-                    
+                        
+                           
+                    }
                 }
             }
             .coordinateSpace(name: "scroll")
             .safeAreaInset(edge: .top, content: {Color.clear.frame(height: 70)})
             if showFull{
-                FullRowView(project: Project.example, nameSpace: nameSpace, showFull: $showFull)
+                if let selected = selected{
+                    if let selectedColor = selectedColor{
+                        FullRowView(project: selected, nameSpace: nameSpace, showFull: $showFull,color: selectedColor)
+                    }
+                }
             }
         }
     }

@@ -14,11 +14,9 @@ struct FullRowView: View {
     
     @Binding var showFull:Bool
     
-    @State var colors:[Color] = [.green,.blue,.cyan,.indigo,.pink,.purple,.red]
+  
+    var color:Color
     
-    var color:Color{
-        colors.first!
-    }
     var body: some View {
         
         ZStack {
@@ -55,26 +53,26 @@ struct FullRowView: View {
         .frame(height: 500)
         .foregroundStyle(.white)
         .background(
-            color.matchedGeometryEffect(id: "BackgroundColor", in: nameSpace)
+            color.matchedGeometryEffect(id: "\(project.name)BackgroundColor", in: nameSpace)
         )
         .mask{
             RoundedRectangle(cornerRadius: 30,style: .continuous)
-                .matchedGeometryEffect(id: "mask", in: nameSpace)
+                .matchedGeometryEffect(id: "\(project.name)mask", in: nameSpace)
         }
         .overlay(
             VStack(alignment: .leading, spacing: 12){
                 
                 Text(project.name)
                 .font(.largeTitle.weight(.bold))
-                .matchedGeometryEffect(id: "name", in: nameSpace)
+                .matchedGeometryEffect(id: "\(project.name)name", in: nameSpace)
                 .frame(maxWidth:.infinity,alignment: .leading)
                 
                 Text("\(project.madeTasks.count)/\(project.tasks.count) Tasks")
                     .font(.title3.weight(.semibold))
-                    .matchedGeometryEffect(id: "madeText", in: nameSpace)
+                    .matchedGeometryEffect(id: "\(project.name)madeText", in: nameSpace)
                 Text(project.description)
                     .font(.footnote.weight(.light))
-                    .matchedGeometryEffect(id: "description", in: nameSpace)
+                    .matchedGeometryEffect(id: "\(project.name)description", in: nameSpace)
                 Divider()
                 HStack{
                     Button("Add"){
@@ -94,12 +92,13 @@ struct FullRowView: View {
                 Rectangle()
                     .fill(.ultraThinMaterial)
                     .mask(RoundedRectangle(cornerRadius: 30,style: .continuous))
-                    .matchedGeometryEffect(id: "blur", in: nameSpace)
+                    .matchedGeometryEffect(id: "\(project.name)blur", in: nameSpace)
                 )
                 .offset(y:250)
                
         )
-    .padding(20)
+   
+ 
     }
     
 }
@@ -107,6 +106,6 @@ struct FullRowView: View {
 struct FullRowView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        FullRowView(project: Project.example, nameSpace: namespace, showFull: .constant(true))
+        FullRowView(project: Project.example, nameSpace: namespace, showFull: .constant(true),color: Color.indigo)
     }
 }
