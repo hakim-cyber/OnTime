@@ -11,7 +11,7 @@ struct FullRowView: View {
     var project:Project
     
     var nameSpace:Namespace.ID
-    var color:Color
+    var color:LinearGradient
     var close:()-> Void
     
     var body: some View {
@@ -23,7 +23,7 @@ struct FullRowView: View {
                 
                 
             }
-            .background(color)
+            .background(color.matchedGeometryEffect(id: "\(project.name)BackgroundColor", in: nameSpace))
             .ignoresSafeArea()
             Button{
                 withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
@@ -68,10 +68,7 @@ struct FullRowView: View {
         .frame(maxWidth: .infinity)
         .frame(height: 300)
         .foregroundStyle(.white)
-        .background(
-            color.matchedGeometryEffect(id: "\(project.name)BackgroundColor", in: nameSpace)
-               
-        )
+        
         .mask{
             RoundedRectangle(cornerRadius: 30,style: .continuous)
                 .matchedGeometryEffect(id: "\(project.name)mask", in: nameSpace)
@@ -143,7 +140,7 @@ struct FullRowView: View {
 struct FullRowView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        FullRowView(project: Project.example, nameSpace: namespace, color: Color.indigo, close: {})
+        FullRowView(project: Project.example, nameSpace: namespace, color: Color.randomColor(), close: {})
             
         
     }

@@ -14,7 +14,7 @@ struct RowView: View {
     
     @Binding var showFull:Bool
     
-   var color:Color
+   var color:LinearGradient
     var body: some View {
         
         VStack{
@@ -60,6 +60,6 @@ struct RowView: View {
 struct RowView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        RowView(project: Project.example,nameSpace: namespace, showFull: .constant(true), color: Color.red)
+        RowView(project: Project.example,nameSpace: namespace, showFull: .constant(true), color: Color.randomColor())
     }
 }

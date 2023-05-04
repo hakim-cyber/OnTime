@@ -12,7 +12,7 @@ struct MainView: View {
     
     @Namespace var nameSpace
     @State private var selected:Project?
-    @State var selectedColor:Color?
+    @State var selectedColor:LinearGradient?
     @State  var showFull = false
     
     var body: some View {
