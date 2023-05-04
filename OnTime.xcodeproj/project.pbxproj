@@ -21,6 +21,7 @@
 		08149F252A0265F8008DA526 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F242A0265F8008DA526 /* RowView.swift */; };
 		08149F272A02672E008DA526 /* FullRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F262A02672E008DA526 /* FullRowView.swift */; };
 		08149F2C2A044037008DA526 /* TasksListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F2B2A044037008DA526 /* TasksListRow.swift */; };
+		08149F2E2A044FD7008DA526 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F2D2A044FD7008DA526 /* CustomTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		08149F242A0265F8008DA526 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		08149F262A02672E008DA526 /* FullRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullRowView.swift; sourceTree = "<group>"; };
 		08149F2B2A044037008DA526 /* TasksListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListRow.swift; sourceTree = "<group>"; };
+		08149F2D2A044FD7008DA526 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				08149F082A019280008DA526 /* ContentView.swift */,
 				08149F202A01A207008DA526 /* FavoritesView.swift */,
 				08149F1E2A01A0E5008DA526 /* MainView.swift */,
+				08149F2D2A044FD7008DA526 /* CustomTabBar.swift */,
 				08149F282A026748008DA526 /*  CustomRow */,
 				08149F1C2A019E84008DA526 /* ProjectStrcut.swift */,
 				08149F1A2A019547008DA526 /* CustomTabView.swift */,
@@ -178,6 +181,7 @@
 				08149F1D2A019E84008DA526 /* ProjectStrcut.swift in Sources */,
 				08149F252A0265F8008DA526 /* RowView.swift in Sources */,
 				08149F1F2A01A0E5008DA526 /* MainView.swift in Sources */,
+				08149F2E2A044FD7008DA526 /* CustomTabBar.swift in Sources */,
 				08149F172A019373008DA526 /* features.swift in Sources */,
 				08149F092A019280008DA526 /* ContentView.swift in Sources */,
 				08149F232A01A250008DA526 /* ProjectRowView.swift in Sources */,

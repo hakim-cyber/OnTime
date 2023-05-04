@@ -9,6 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
    @StateObject var projects = ProjectsArray()
+    @State private var selectedTab:Tab = .house
+    
+    init(){
+        UITabBar.appearance().isHidden = true
+    }
     var body: some View {
         NavigationView{
             ZStack {
