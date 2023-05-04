@@ -19,7 +19,7 @@ struct MainView: View {
         ZStack{
             Color.backgroundColor.ignoresSafeArea()
             
-            ScrollView{
+            ScrollView( showsIndicators: false){
              
                 ForEach(Projects.example.indices){index in
                         let selectedcolor = Color.randomColor()

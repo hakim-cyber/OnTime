@@ -17,39 +17,40 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             ZStack {
-                Color.backgroundColor
-                    .ignoresSafeArea()
-                TabView{
-                    Text("Main")
-                        .tabItem{
-                            Image(systemName: "house.fill")
-                            Text("Main")
+                VStack{
+                    TabView(selection: $selectedTab){
+                        ForEach(Tab.allCases , id:\.rawValue){tab in
+                            
+                                if tab == .house{
+                                    MainView()
+                                        .environmentObject(projects)
+                                        .tag(tab)
+                                    }
+                            if tab == .heart{
+                                HStack{
+                                    Text("Coming Soon")
+                                }
+                                .tag(tab)
+                            }
+                            if tab == .person{
+                                HStack{
+                                    Text("Coming Soon")
+                                }
+                                .tag(tab)
+                            }
                         }
-                    
-                    Text("Favourites")
-                        .tabItem{
-                            Image(systemName: "heart.fill")
-                            Text("Favorites")
-                        }
-                    Text("Profile")
-                        .tabItem{
-                            Image(systemName: "person.fill")
-                            Text("Profile")
-                        }
-                    
+                    }
                 }
-                .environmentObject(projects)
                 
-                .background(Color.blue)
-                .accentColor(.green)
-                .transition(.slide)
+                VStack{
+                    Spacer()
+                    Spacer()
+                    CustomTabBar(selectedTab: $selectedTab)
+                }
+               
                 
             }
-            .toolbar{
-                Button("Add"){
-                    
-                }
-            }
+           
         }
     }
 }

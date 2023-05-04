@@ -38,7 +38,7 @@ struct CustomTabBar: View {
                             }
                         if selectedTab == tab{
                                                    Rectangle()
-                                                       .fill(Color.randomColor())
+                                                       .fill(Color.green)
                                                        .frame(width: 20,height: 1.5)
                                                        .offset(y:15)
                                                       
@@ -52,10 +52,11 @@ struct CustomTabBar: View {
                 }
                 
             }
-            .frame(width: nil,height: 60)
+            .frame(width: nil,height: 80)
             .background(.thinMaterial)
-            .cornerRadius(10)
-            .padding()
+            .cornerRadius(30)
+            .padding(.horizontal,5)
+            .ignoresSafeArea()
         }
     }
 }
