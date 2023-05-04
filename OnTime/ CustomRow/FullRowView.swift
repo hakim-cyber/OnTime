@@ -44,7 +44,25 @@ struct FullRowView: View {
                     
             }
             
-            ScrollView{
+            VStack{
+                GeometryReader{geo in
+                    VStack{
+                        ScrollView{
+                            Text("Item")
+                            Text("Item")
+                            Text("Item")
+                            
+                            Text("Item")
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        
+                       
+                    }
+                    .frame(width: geo.size.width,height: geo.size.height,alignment: .leading)
+                    
+                    
+                   
+                }
                 
                 
             }
@@ -55,7 +73,7 @@ struct FullRowView: View {
                 
             )
             .padding(.horizontal,10)
-            .frame(maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .offset(y:300)
            
         }
