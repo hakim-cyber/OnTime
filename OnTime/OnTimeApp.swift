@@ -12,8 +12,8 @@ struct OnTimeApp: App {
     @StateObject var projects = ProjectsArray()
     var body: some Scene {
         WindowGroup {
-           MainView()
-                .environmentObject(projects)
+           ContentView()
+                
         }
     }
 }

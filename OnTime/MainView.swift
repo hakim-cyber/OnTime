@@ -10,6 +10,8 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var Projects:ProjectsArray
     
+    var showingFull:()->Void
+    
     @Namespace var nameSpace
     @State  var selected:Project?
     @State var selectedColor:LinearGradient?
@@ -17,7 +19,7 @@ struct MainView: View {
     
     var body: some View {
         ZStack{
-            Color.backgroundColor.ignoresSafeArea()
+           
             
             ScrollView( showsIndicators: false){
              
@@ -33,7 +35,7 @@ struct MainView: View {
                                     withAnimation(.easeInOut(duration: 0.5)) {
                                         selected = Projects.example[index]
                                         selectedColor = selectedcolor
-                                        
+                                        showingFull()
                                         showFull = true
                                     }
                                 }
@@ -56,9 +58,11 @@ struct MainView: View {
                                 )
                         FullRowView(project: projectBinding, nameSpace: nameSpace,color: selectedColor){
                             saveSelected()
+                            showingFull()
                             showFull = false
                             
                         }
+                        .preferredColorScheme(.dark)
                     }
                 }
             }
@@ -77,7 +81,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView( showingFull: {})
             .environmentObject(ProjectsArray())
     }
 }

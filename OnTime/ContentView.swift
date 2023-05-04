@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
    @StateObject var projects = ProjectsArray()
     @State private var selectedTab:Tab = .house
+    @State var showTabBar = true
     
     init(){
         UITabBar.appearance().isHidden = true
@@ -22,9 +23,10 @@ struct ContentView: View {
                         ForEach(Tab.allCases , id:\.rawValue){tab in
                             
                                 if tab == .house{
-                                    MainView()
+                                    MainView( showingFull: {showTabBar.toggle()})
                                         .environmentObject(projects)
                                         .tag(tab)
+                                        .preferredColorScheme(.dark)
                                     }
                             if tab == .heart{
                                 HStack{
@@ -45,10 +47,15 @@ struct ContentView: View {
                 VStack{
                     Spacer()
                     Spacer()
-                    CustomTabBar(selectedTab: $selectedTab)
+                    if showTabBar{
+                        CustomTabBar(selectedTab: $selectedTab)
+                    }
                 }
                
                 
+            }
+            .onAppear{
+                showTabBar = true
             }
            
         }

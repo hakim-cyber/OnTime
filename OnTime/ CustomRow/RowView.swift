@@ -50,8 +50,8 @@ struct RowView: View {
             RoundedRectangle(cornerRadius: 30,style: .continuous)
                 .matchedGeometryEffect(id: "\(project.name)mask", in: nameSpace)
         }
-        .frame(height: 300)
-        .padding(20)
+        .frame(height: 260)
+        .padding(30)
         
         
     }

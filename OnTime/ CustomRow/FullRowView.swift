@@ -30,6 +30,7 @@ struct FullRowView: View {
                 Button{
                     withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
                         withAnimation(.easeInOut(duration: 0.5)) {
+                            
                             close()
                         }
                     }
