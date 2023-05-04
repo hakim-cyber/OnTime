@@ -29,10 +29,10 @@ struct CustomTabBar: View {
                             .scaleEffect(selectedTab == tab ? 1.25 : 1.0)
                             .foregroundColor(selectedTab == tab ? Color.backgroundColor : .gray)
                             .font(.system(size: 20))
-                            .offset(y: selectedTab == tab ? -7 : 0)
+                            .offset(y: selectedTab == tab ? -10 : 0)
                             .shadow(color: Color.green,radius:selectedTab == tab ? 15 : 0)
                             .onTapGesture{
-                                withAnimation(.easeIn(duration: 0.1)){
+                                withAnimation(.easeIn(duration: 0.2)){
                                     selectedTab = tab
                                 }
                             }
@@ -54,10 +54,12 @@ struct CustomTabBar: View {
             }
             .frame(width: nil,height: 80)
             .background(.thinMaterial)
-            .cornerRadius(30)
-            .padding(.horizontal,5)
-            .ignoresSafeArea()
+            .cornerRadius(20)
+            .padding(.horizontal,10)
+            .shadow(color:.green,radius: 5)
+           
         }
+        .ignoresSafeArea()
     }
 }
 
