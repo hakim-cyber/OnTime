@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FullRowView: View {
-    var project:Project
+    @Binding var project:Project
     
     var nameSpace:Namespace.ID
     var color:LinearGradient
@@ -17,6 +17,7 @@ struct FullRowView: View {
     var body: some View {
         
         ZStack {
+            
             ScrollView {
                 cover
          
@@ -25,46 +26,38 @@ struct FullRowView: View {
             }
             .background(color.matchedGeometryEffect(id: "\(project.name)BackgroundColor", in: nameSpace))
             .ignoresSafeArea()
-            Button{
-                withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
-                    withAnimation(.easeInOut(duration: 0.5)) {
-                       close()
-                    }
-                }
-            }label: {
-                Image(systemName: "xmark")
-                    .font(.body.weight(.bold))
-                    .foregroundColor(.secondary)
-                    .padding(8)
-                    .background(.ultraThinMaterial,in:Circle())
-                    .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .topTrailing)
-                    .padding(.horizontal,30)
-                    .padding(.vertical,50)
-                    .ignoresSafeArea()
-                    
-            }
-            
-            VStack{
-                GeometryReader{geo in
-                    VStack{
-                        ScrollView{
-                            Text("Item")
-                            Text("Item")
-                            Text("Item")
-                            
-                            Text("Item")
+            .overlay(alignment: .topTrailing){
+                Button{
+                    withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            close()
                         }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        
-                       
                     }
-                    .frame(width: geo.size.width,height: geo.size.height,alignment: .leading)
+                }label: {
+                    Image(systemName: "xmark")
+                        .font(.body.weight(.bold))
+                        .foregroundColor(.secondary)
+                        .padding(8)
+                        .background(.ultraThinMaterial,in:Circle())
+                        .padding(.horizontal,30)
+                        .padding(.vertical,50)
+                        .ignoresSafeArea()
                     
-                    
-                   
                 }
-                
-                
+            }
+            VStack{
+                    VStack{
+                       
+                        List{
+                            ForEach(Array(project.tasks.indices),id:\.self){index in
+                                TasksListRow(color: color, task: $project.tasks[index])
+                                    .listRowBackground(Color.clear)
+                                    .listRowSeparator(.hidden)
+                            }
+                        }
+                        .listStyle(PlainListStyle())
+                     
+                    }
             }
             .background(
                 Rectangle()
@@ -158,7 +151,7 @@ struct FullRowView: View {
 struct FullRowView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        FullRowView(project: Project.example, nameSpace: namespace, color: Color.randomColor(), close: {})
+        FullRowView(project: .constant(Project.example), nameSpace: namespace, color: Color.randomColor(), close: {})
             
         
     }

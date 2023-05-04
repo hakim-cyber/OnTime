@@ -15,8 +15,12 @@ struct Project:Codable,Identifiable{
     let description:String
     var tasks :[Task]
     var isFavourite = false
-    var madeTasks = [Task]()
+    
+    var madeTasks:[Task]{
+        tasks.filter{$0.isMade}
+    }
    
+    
     static let example = Project(name: "New ajsajshashaas", description: "Make An App",tasks: [Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar")])
     
 }
@@ -24,6 +28,7 @@ struct Task:Codable,Identifiable{
     var id = UUID()
     let name:String
     var description:String
+    var isMade = false
 }
 
 

@@ -11,7 +11,7 @@ struct MainView: View {
     @EnvironmentObject var Projects:ProjectsArray
     
     @Namespace var nameSpace
-    @State private var selected:Project?
+    @State  var selected:Project?
     @State var selectedColor:LinearGradient?
     @State  var showFull = false
     
@@ -21,17 +21,17 @@ struct MainView: View {
             
             ScrollView{
              
-                    ForEach(Projects.example){project in
+                ForEach(Projects.example.indices){index in
                         let selectedcolor = Color.randomColor()
                         
-                        RowView(project: project, nameSpace: nameSpace, showFull: $showFull,color: selectedcolor)
+                    RowView(project: Projects.example[index], nameSpace: nameSpace, showFull: $showFull,color: selectedcolor)
                             
                             .opacity(showFull ? 0:1)
                             .shadow(radius: 40)
                             .onTapGesture {
                                 withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
                                     withAnimation(.easeInOut(duration: 0.5)) {
-                                        selected = project
+                                        selected = Projects.example[index]
                                         selectedColor = selectedcolor
                                         
                                         showFull = true
@@ -49,14 +49,27 @@ struct MainView: View {
             .safeAreaInset(edge: .top, content: {Color.clear.frame(height: 70)})
             if showFull{
                 if let selected = selected{
-                    if let selectedColor = selectedColor{
-                        FullRowView(project: selected, nameSpace: nameSpace,color: selectedColor){
-                            
+                    if  let selectedColor = selectedColor{
+                        let projectBinding = Binding<Project>(
+                            get: { self.selected ?? Project.example},
+                                    set: { self.selected = $0 }
+                                )
+                        FullRowView(project: projectBinding, nameSpace: nameSpace,color: selectedColor){
+                            saveSelected()
                             showFull = false
                             
                         }
                     }
                 }
+            }
+        }
+    }
+    func saveSelected(){
+        if let selected = selected{
+            
+            if let indexOfSelected = Projects.example.firstIndex(where: {$0.id == selected.id}){
+                
+                Projects.example[indexOfSelected] = selected
             }
         }
     }
