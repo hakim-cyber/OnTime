@@ -21,6 +21,7 @@
 		08149F272A02672E008DA526 /* FullRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F262A02672E008DA526 /* FullRowView.swift */; };
 		08149F2C2A044037008DA526 /* TasksListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F2B2A044037008DA526 /* TasksListRow.swift */; };
 		08149F2E2A044FD7008DA526 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F2D2A044FD7008DA526 /* CustomTabBar.swift */; };
+		08149F302A0587EA008DA526 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F2F2A0587EA008DA526 /* AddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		08149F262A02672E008DA526 /* FullRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullRowView.swift; sourceTree = "<group>"; };
 		08149F2B2A044037008DA526 /* TasksListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListRow.swift; sourceTree = "<group>"; };
 		08149F2D2A044FD7008DA526 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		08149F2F2A0587EA008DA526 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				08149F062A019280008DA526 /* OnTimeApp.swift */,
 				08149F082A019280008DA526 /* ContentView.swift */,
+				08149F2F2A0587EA008DA526 /* AddView.swift */,
 				08149F202A01A207008DA526 /* FavoritesView.swift */,
 				08149F1E2A01A0E5008DA526 /* MainView.swift */,
 				08149F2D2A044FD7008DA526 /* CustomTabBar.swift */,
@@ -175,6 +178,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08149F302A0587EA008DA526 /* AddView.swift in Sources */,
 				08149F1D2A019E84008DA526 /* ProjectStrcut.swift in Sources */,
 				08149F252A0265F8008DA526 /* RowView.swift in Sources */,
 				08149F1F2A01A0E5008DA526 /* MainView.swift in Sources */,

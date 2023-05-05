@@ -16,6 +16,7 @@ struct MainView: View {
     @State  var selected:Project?
     @State var selectedColor:LinearGradient?
     @State  var showFull = false
+    @State var showAddView = false
     
     var body: some View {
         ZStack{
@@ -26,7 +27,7 @@ struct MainView: View {
                 ForEach(Projects.example.indices){index in
                         let selectedcolor = Color.randomColor()
                         
-                    RowView(project: Projects.example[index], nameSpace: nameSpace, showFull: $showFull,color: selectedcolor)
+                    RowView(project: Projects.example[index], nameSpace: nameSpace, showFull: $showFull,showaddView: $showAddView, color: selectedcolor)
                             
                             .opacity(showFull ? 0:1)
                             .shadow(radius: 40)
@@ -56,7 +57,7 @@ struct MainView: View {
                             get: { self.selected ?? Project.example},
                                     set: { self.selected = $0 }
                                 )
-                        FullRowView(project: projectBinding, nameSpace: nameSpace,color: selectedColor){
+                        FullRowView(showaddView: $showAddView,project: projectBinding, nameSpace: nameSpace,color: selectedColor){
                             saveSelected()
                             showingFull()
                             showFull = false
@@ -66,6 +67,14 @@ struct MainView: View {
                     }
                 }
             }
+        }
+        .fullScreenCover(isPresented: $showAddView,onDismiss: {
+            Projects.saveProjects()
+            Projects.loadProjects()
+            
+        }){
+            AddView()
+                .environmentObject(Projects)
         }
     }
     func saveSelected(){

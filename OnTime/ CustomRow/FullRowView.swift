@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FullRowView: View {
+    @Binding var showaddView:Bool
     @Binding var project:Project
     
     var nameSpace:Namespace.ID
@@ -46,6 +47,15 @@ struct FullRowView: View {
                     
                 }
             }
+            .overlay(alignment:.topLeading){
+                Toggle("", isOn: $project.isFavourite)
+                    .labelsHidden()
+                    .toggleStyle(HeartToggleStyle(size: 30))
+                    .padding(.horizontal,30)
+                    .padding(.vertical,55)
+                    .ignoresSafeArea()
+                    
+            }
             VStack{
                     VStack{
                        
@@ -71,6 +81,7 @@ struct FullRowView: View {
             .offset(y:300)
            
         }
+        
     }
     var cover: some View{
         VStack{
@@ -127,16 +138,22 @@ struct FullRowView: View {
               
                    
                         Button{
-                            
+                            withAnimation {
+                                showaddView = true
+                            }
+                         
                         }label: {
                             Image(systemName: "plus")
                                 .font(.largeTitle.weight(.bold))
                                 .foregroundColor(.secondary)
-                                .padding(20)
+                                .padding(15)
                                 .background(.ultraThinMaterial,in:Circle())
+                                .matchedGeometryEffect(id: "\(project.name) add Button", in: nameSpace)
                         }
                         .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
+                       
                         .offset(y:70)
+                        
                 
             }
                 .offset(y:80)
@@ -152,7 +169,7 @@ struct FullRowView: View {
 struct FullRowView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        FullRowView(project: .constant(Project.example), nameSpace: namespace, color: Color.randomColor(), close: {})
+        FullRowView(showaddView: .constant(false), project: .constant(Project.example), nameSpace: namespace, color: Color.randomColor(), close: {})
             
         
     }

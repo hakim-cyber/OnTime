@@ -56,10 +56,12 @@ struct ContentView: View {
             }
             .onAppear{
                 showTabBar = true
+                projects.loadProjects()
             }
            
         }
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

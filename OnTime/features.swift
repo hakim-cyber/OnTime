@@ -33,3 +33,42 @@ extension Color{
         return LinearGradient(colors: [randomcolor1,randomcolor2], startPoint: .top, endPoint: .bottom)
     }
 }
+
+
+struct HeartToggleStyle: ToggleStyle {
+    var size:Int
+    func makeBody(configuration: Configuration) -> some View {
+        Button(action: {
+            withAnimation {
+                configuration.isOn.toggle()
+            }
+           
+        }) {
+            Image(systemName: configuration.isOn ? "heart.fill" : "heart")
+                .foregroundColor(configuration.isOn ? .red : .gray)
+                .font(.system(size: CGFloat(size)))
+                
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+
+struct CheckMarkToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button(action: {
+            withAnimation {
+                configuration.isOn.toggle()
+            }
+           
+        }) {
+           
+                
+            Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
+                .foregroundColor(configuration.isOn ? .gray : .gray)
+                .font(.system(size: 28))
+            
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}

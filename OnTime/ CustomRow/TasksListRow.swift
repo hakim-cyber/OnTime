@@ -49,21 +49,3 @@ struct TasksListRow_Previews: PreviewProvider {
     }
 }
 
-struct CheckMarkToggleStyle: ToggleStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        Button(action: {
-            withAnimation {
-                configuration.isOn.toggle()
-            }
-           
-        }) {
-           
-                
-            Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
-                .foregroundColor(configuration.isOn ? .gray : .gray)
-                .font(.system(size: 28))
-            
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-}
