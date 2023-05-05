@@ -16,71 +16,75 @@ struct FullRowView: View {
     var close:()-> Void
     
     var body: some View {
-        
-        ZStack {
+        GeometryReader{geo in
             
-            ScrollView {
-                cover
-         
+            ZStack {
                 
-                
-            }
-            .background(color.matchedGeometryEffect(id: "\(project.name)BackgroundColor", in: nameSpace))
-            .ignoresSafeArea()
-            .overlay(alignment: .topTrailing){
-                Button{
-                    withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
-                        withAnimation(.easeInOut(duration: 0.5)) {
-                            
-                            close()
+                ScrollView {
+                    cover
+                    
+                    
+                    
+                }
+                .background(color.matchedGeometryEffect(id: "\(project.name)BackgroundColor", in: nameSpace))
+                .ignoresSafeArea()
+                .overlay(alignment: .topTrailing){
+                    Button{
+                        withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
+                            withAnimation(.easeInOut(duration: 0.5)) {
+                                
+                                close()
+                            }
                         }
+                    }label: {
+                        Image(systemName: "xmark")
+                            .font(.body.weight(.bold))
+                            .foregroundColor(.secondary)
+                            .padding(8)
+                            .background(.ultraThinMaterial,in:Circle())
+                            .padding(.horizontal,30)
+                            .padding(.vertical,50)
+                            .ignoresSafeArea()
+                        
                     }
-                }label: {
-                    Image(systemName: "xmark")
-                        .font(.body.weight(.bold))
-                        .foregroundColor(.secondary)
-                        .padding(8)
-                        .background(.ultraThinMaterial,in:Circle())
+                }
+                .overlay(alignment:.topLeading){
+                    Toggle("", isOn: $project.isFavourite)
+                        .labelsHidden()
+                        .toggleStyle(HeartToggleStyle(size: 30))
                         .padding(.horizontal,30)
-                        .padding(.vertical,50)
+                        .padding(.vertical,55)
                         .ignoresSafeArea()
                     
                 }
-            }
-            .overlay(alignment:.topLeading){
-                Toggle("", isOn: $project.isFavourite)
-                    .labelsHidden()
-                    .toggleStyle(HeartToggleStyle(size: 30))
-                    .padding(.horizontal,30)
-                    .padding(.vertical,55)
-                    .ignoresSafeArea()
-                    
-            }
-            VStack{
-                    VStack{
-                       
-                        List{
-                            ForEach(Array(project.tasks.indices),id:\.self){index in
-                                TasksListRow(color: color, task: $project.tasks[index])
-                                    .listRowBackground(Color.clear)
-                                    .listRowSeparator(.hidden)
-                            }
-                        }
-                        .listStyle(PlainListStyle())
-                     
-                    }
-            }
-            .background(
-                Rectangle()
-                    .fill(.ultraThinMaterial)
-                    .mask(RoundedRectangle(cornerRadius: 40,style: .continuous))
                 
-            )
-            .padding(.horizontal,10)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .offset(y:300)
-           
+                ScrollView(.vertical,showsIndicators: false){
+                    VStack{
+                        ForEach(Array(project.tasks.indices),id:\.self){index in
+                            TasksListRow(color: color, task: $project.tasks[index])
+                            
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                }
+                
+                .padding()
+                .background(
+                    Rectangle()
+                        .fill(.ultraThinMaterial)
+                        .mask(RoundedRectangle(cornerRadius: 40,style: .continuous))
+                    
+                )
+                .padding(.horizontal,10)
+                .frame(height: 650)
+                .position(x: geo.size.width/2, y: geo.size.height/1.35)
+                
+                
+            }
         }
+           
+        
         
     }
     var cover: some View{
