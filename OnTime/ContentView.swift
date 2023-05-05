@@ -39,6 +39,7 @@ struct ContentView: View {
                                     Text("Coming Soon")
                                 }
                                 .tag(tab)
+                                
                             }
                         }
                     }
