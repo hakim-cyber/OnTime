@@ -15,6 +15,7 @@ enum Tab:String,CaseIterable{
 
 struct CustomTabBar: View {
     @Binding var selectedTab:Tab
+    @Binding var shwAddView:Bool
     private var fillImage:String{
         selectedTab.rawValue + ".fill"
     }
@@ -22,6 +23,8 @@ struct CustomTabBar: View {
     var body: some View {
         VStack{
             HStack{
+                RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .green, action: {shwAddView = true},image: "plus")
+                    .padding(.horizontal)
                 ForEach(Tab.allCases,id:\.rawValue){tab in
                     Spacer()
                     ZStack{
@@ -65,7 +68,7 @@ struct CustomTabBar: View {
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTabBar(selectedTab: .constant(Tab.house))
+        CustomTabBar(selectedTab: .constant(Tab.house),shwAddView: .constant(false))
     }
 }
 

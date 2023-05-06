@@ -77,7 +77,7 @@ struct FullRowView: View {
                     
                 )
                 .padding(.horizontal,10)
-                .frame(height: 650)
+                .frame(height: 600)
                 .position(x: geo.size.width/2, y: geo.size.height/1.35)
                 
                 
