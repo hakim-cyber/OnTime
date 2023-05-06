@@ -121,14 +121,42 @@ struct CustomSideBar: View {
                 
             }
             RoundedRectangle(cornerRadius: 5)
-                            .fill(.ultraThinMaterial)
-                               .frame(width: 15,height:80)
-                               .offset(x:50)
-                          
+                .fill(Color.indigo)
+                .frame(width:25,height:60)
+                .overlay{
+                    VStack(alignment: .center){
+                        Image(systemName: "line.3.horizontal")
+                            .padding(3)
+                    }
+                }
+                .offset(x:50)
+                
+            
         }
-        .ignoresSafeArea()
         .padding(.leading,5)
-        .frame(minWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .offset(x:startX + currentDragOffset + endX)
+        .gesture(
+        DragGesture()
+            .onChanged{value in
+                withAnimation(.spring()){
+                    currentDragOffset = value.translation.width
+                }
+            }
+            .onEnded{value in
+                withAnimation(.spring()){
+                    if currentDragOffset > 10{
+                        endX = -startX
+                        currentDragOffset = 0
+                    }else if endX != 0 && currentDragOffset < 10{
+                        endX = 0
+                        currentDragOffset = 0
+                    }else{
+                        currentDragOffset = 0
+                    }
+                }
+            }
+        )
     }
 }
 
