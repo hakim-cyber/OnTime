@@ -24,10 +24,10 @@ struct MainView: View {
             
             ScrollView( showsIndicators: false){
              
-                ForEach(Projects.example.indices){index in
+                ForEach(Projects.projects.indices){index in
                         let selectedcolor = Color.randomColor()
                         
-                    RowView(project: Projects.example[index], nameSpace: nameSpace, showFull: $showFull,showaddView: $showAddView, color: selectedcolor)
+                    RowView(project: Projects.projects[index], nameSpace: nameSpace, showFull: $showFull,showaddView: $showAddView, color: selectedcolor)
                             
                             .opacity(showFull ? 0:1)
                             .shadow(radius: 40)
