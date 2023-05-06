@@ -74,6 +74,7 @@ struct CustomSideBar: View {
     @Binding var selectedTab:Tab
     @Binding var currentDragOffset:CGFloat
     @Binding var endX:CGFloat
+    @Binding var showAddView:Bool
     private var fillImage:String{
         selectedTab.rawValue + ".fill"
     }
@@ -83,6 +84,8 @@ struct CustomSideBar: View {
             VStack{
                 
                 VStack{
+                    RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .green, action: {showAddView = true},image: "plus")
+                        .padding()
                     ForEach(Tab.allCases,id:\.rawValue){tab in
                         Spacer()
                         ZStack{
@@ -113,7 +116,7 @@ struct CustomSideBar: View {
                     }
                     
                 }
-                .frame(width: 80,height: 300)
+                .frame(width: 80,height: 400)
                 .background(.ultraThinMaterial)
                 .cornerRadius(20)
                 .padding(.vertical,10)

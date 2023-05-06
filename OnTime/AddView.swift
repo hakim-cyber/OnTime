@@ -13,6 +13,7 @@ enum DateOfTask{
 struct AddView: View {
     
     @State var dateOfTask = DateOfTask.today
+    var change:()->Void
     @EnvironmentObject var projects:ProjectsArray
     @Environment(\.colorScheme) var colorScheme
 
@@ -69,7 +70,8 @@ struct AddView: View {
                             ScrollView(.horizontal,showsIndicators: false){
                                 HStack{
                                     RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .white, action: {showAlertNewProject = true},image: "plus")
-                                    ForEach(projects.example){project in
+                                    ForEach(projects.projects){project in
+                                       
                                         RoundedButtonAddView(text: project.name, textColor: project.id == selectedProject?.id ? .white : .black, backgroundColor: project.id == selectedProject?.id ? .blue : .white, action: {selectedProject = project})
                                     }
                                 }
@@ -124,7 +126,9 @@ struct AddView: View {
             
         }
         .onAppear{
-            selectedProject = projects.example[0]
+            if !(projects.projects.isEmpty){
+                selectedProject = projects.projects[0]
+            }
         }
         .alert("New Project", isPresented: $showAlertNewProject){
             
@@ -156,17 +160,22 @@ struct AddView: View {
     }
     func createTask(){
         if let selectedProject = selectedProject{
-            if  let indexOfProject = projects.example.firstIndex(where: {$0.id == selectedProject.id}){
+            if  let indexOfProject = projects.projects.firstIndex(where: {$0.id == selectedProject.id}){
                 let task = Task(name: nameOfTask, description: descriptionOfTask)
                 
-                projects.example[indexOfProject].tasks.append(task)
+                projects.projects[indexOfProject].tasks.append(task)
+              
+                change()
             }
         }
     }
     func addNewProject(){
         let newProject = Project(name: newProjectName, description: newProjectDescription, tasks: [Task]())
         
-        projects.example.append(newProject)
+        projects.projects.insert(newProject, at: 0)
+        change()
+       
+        
         
         selectedProject = newProject
         
@@ -177,7 +186,9 @@ struct AddView: View {
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView()
+        AddView(){
+            
+        }
             .environmentObject(ProjectsArray())
     }
 }

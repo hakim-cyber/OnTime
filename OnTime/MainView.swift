@@ -13,10 +13,10 @@ struct MainView: View {
     var showingFull:()->Void
     
     @Namespace var nameSpace
-    @State  var selected:Project?
+    @State  var selected:Int?
     @State var selectedColor:LinearGradient?
     @State  var showFull = false
-    @State var showAddView = false
+    @Binding var showAddView:Bool
     
     var body: some View {
         ZStack{
@@ -24,7 +24,7 @@ struct MainView: View {
             
             ScrollView( showsIndicators: false){
              
-                ForEach(Projects.projects.indices){index in
+                ForEach(Array(Projects.projects.indices) , id: \.self){index in
                         let selectedcolor = Color.randomColor()
                         
                     RowView(project: Projects.projects[index], nameSpace: nameSpace, showFull: $showFull,showaddView: $showAddView, color: selectedcolor)
@@ -34,7 +34,7 @@ struct MainView: View {
                             .onTapGesture {
                                 withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
                                     withAnimation(.easeInOut(duration: 0.5)) {
-                                        selected = Projects.example[index]
+                                        selected = index
                                         selectedColor = selectedcolor
                                         showingFull()
                                         showFull = true
@@ -51,13 +51,11 @@ struct MainView: View {
             .coordinateSpace(name: "scroll")
             .safeAreaInset(edge: .top, content: {Color.clear.frame(height: 70)})
             if showFull{
-                if let selected = selected{
+                if selected != nil{
                     if  let selectedColor = selectedColor{
-                        let projectBinding = Binding<Project>(
-                            get: { self.selected ?? Project.example},
-                                    set: { self.selected = $0 }
-                                )
-                        FullRowView(showaddView: $showAddView,project: projectBinding, nameSpace: nameSpace,color: selectedColor){
+                      
+                                
+                        FullRowView(showaddView: $showAddView,project: $Projects.projects[selected!], nameSpace: nameSpace,color: selectedColor){
                             saveSelected()
                             showingFull()
                             showFull = false
@@ -68,29 +66,34 @@ struct MainView: View {
                 }
             }
         }
-        .fullScreenCover(isPresented: $showAddView,onDismiss: {
-            Projects.saveProjects()
+        .onAppear{
             Projects.loadProjects()
-            
-        }){
-            AddView()
+        }
+        .fullScreenCover(isPresented: $showAddView){
+           
+                AddView( ){
+                    
+                    Projects.saveProjects()
+                    Projects.loadProjects()
+                    
+                }
                 .environmentObject(Projects)
+       
         }
     }
     func saveSelected(){
         if let selected = selected{
-            
-            if let indexOfSelected = Projects.example.firstIndex(where: {$0.id == selected.id}){
                 
-                Projects.example[indexOfSelected] = selected
-            }
+            Projects.projects[selected] =  Projects.projects[selected]
+                Projects.saveProjects()
+            
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView( showingFull: {})
+        MainView( showingFull: {}, showAddView: .constant(false))
             .environmentObject(ProjectsArray())
     }
 }

@@ -11,9 +11,10 @@ struct ContentView: View {
    @StateObject var projects = ProjectsArray()
     @State private var selectedTab:Tab = .house
     @State var showTabBar = true
+    @State var showAddView = false
     
     @State var startX:CGFloat = UIScreen.main.bounds.width * -0.20
-    @State var currentDragOffsetX:CGFloat = 90
+    @State var currentDragOffsetX:CGFloat = 0
     @State var endX:CGFloat = 0
     
     
@@ -28,7 +29,7 @@ struct ContentView: View {
                         ForEach(Tab.allCases , id:\.rawValue){tab in
                             
                                 if tab == .house{
-                                    MainView( showingFull: {showTabBar.toggle()})
+                                    MainView( showingFull: {showTabBar.toggle()}, showAddView: $showAddView)
                                         .environmentObject(projects)
                                         .tag(tab)
                                         .preferredColorScheme(.dark)
@@ -54,7 +55,7 @@ struct ContentView: View {
                 VStack{
                    
                     if showTabBar{
-                        CustomSideBar(startX: startX, selectedTab: $selectedTab, currentDragOffset: $currentDragOffsetX, endX: $endX)
+                        CustomSideBar(startX: startX, selectedTab: $selectedTab, currentDragOffset: $currentDragOffsetX, endX: $endX, showAddView: $showAddView)
                     }
                 }
                
