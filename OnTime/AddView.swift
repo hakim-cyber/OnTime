@@ -35,17 +35,17 @@ struct AddView: View {
            
                 HStack{
                     VStack(alignment: .leading){
-                        RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .white, action: {presentationMode.wrappedValue.dismiss()},image: "xmark")
-                            .ignoresSafeArea()
-                            .padding(.horizontal,20)
-                            .offset(y:-20)
+                        
                         Text("New Task")
                             .font(.system(.largeTitle, design: .monospaced))
                             .fontWeight(.black)
                             .padding()
                     }
                     Spacer()
-                        
+                    RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .white, action: {presentationMode.wrappedValue.dismiss()},image: "xmark")
+                        .ignoresSafeArea()
+                        .padding(.horizontal,20)
+                        .offset(y:-20)
                 }
                 VStack{
                     VStack(alignment: .leading){

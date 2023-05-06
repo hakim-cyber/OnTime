@@ -77,6 +77,7 @@ struct MainView: View {
                     Projects.loadProjects()
                     
                 }
+                .preferredColorScheme(.light)
                 .environmentObject(Projects)
        
         }
