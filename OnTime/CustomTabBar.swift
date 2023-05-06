@@ -121,7 +121,7 @@ struct CustomSideBar: View {
                 
             }
             RoundedRectangle(cornerRadius: 5)
-                .fill(Color.indigo)
+                .fill(.ultraThinMaterial)
                 .frame(width:25,height:60)
                 .overlay{
                     VStack(alignment: .center){

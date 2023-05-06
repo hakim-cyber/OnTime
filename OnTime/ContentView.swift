@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var showTabBar = true
     
     @State var startX:CGFloat = UIScreen.main.bounds.width * -0.20
-    @State var currentDragOffsetX:CGFloat = 0
+    @State var currentDragOffsetX:CGFloat = 90
     @State var endX:CGFloat = 0
     
     
