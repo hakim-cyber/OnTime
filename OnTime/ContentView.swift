@@ -53,9 +53,10 @@ struct ContentView: View {
                 }
                 
                 VStack{
-                   
+                   Spacer()
+                    Spacer()
                     if showTabBar{
-                        CustomSideBar(startX: startX, selectedTab: $selectedTab, currentDragOffset: $currentDragOffsetX, endX: $endX, showAddView: $showAddView)
+                        CustomTabBar(selectedTab: $selectedTab, shwAddView: $showAddView)
                     }
                 }
                
