@@ -12,6 +12,11 @@ struct ContentView: View {
     @State private var selectedTab:Tab = .house
     @State var showTabBar = true
     
+    @State var startX:CGFloat = UIScreen.main.bounds.width * -0.20
+    @State var currentDragOffsetX:CGFloat = 0
+    @State var endX:CGFloat = 0
+    
+    
     init(){
         UITabBar.appearance().isHidden = true
     }
@@ -43,6 +48,7 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .transition(.slide)
                 }
                 
                 VStack{
