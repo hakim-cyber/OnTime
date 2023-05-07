@@ -37,20 +37,15 @@ struct RowView: View {
                         .matchedGeometryEffect(id: "\(project.name)description", in: nameSpace)
                     
                     Spacer()
-                    Button{
-                        withAnimation {
-                            showaddView = true
-                        }
-                     
-                    }label: {
-                        Image(systemName: "plus")
-                            .font(.title.weight(.bold))
-                            .foregroundColor(.secondary)
-                            .padding(15)
-                            .background(.ultraThinMaterial,in:Circle())
-                            .matchedGeometryEffect(id: "\(project.name) add Button", in: nameSpace)
+                   
+                    HStack{
+                        Circle()
+                            .fill(project.checkColorOfStatusCircl)
+                            .frame(width: 12,height: 12)
+                            
+                        Text(project.status)
+                            .foregroundColor(project.checkColorOfStatusCircl)
                     }
-                    .padding(0)
                    
                 }
                 
@@ -73,11 +68,12 @@ struct RowView: View {
             RoundedRectangle(cornerRadius: 30,style: .continuous)
                 .matchedGeometryEffect(id: "\(project.name)mask", in: nameSpace)
         }
-        .frame(height: 260)
+        .frame(height: 240)
         .padding(30)
         
         
     }
+   
 }
 
 struct RowView_Previews: PreviewProvider {

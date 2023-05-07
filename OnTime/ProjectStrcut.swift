@@ -17,10 +17,45 @@ struct Project:Codable,Identifiable{
     var isFavourite = false
     
     var madeTasks:[Task]{
-        tasks.filter{$0.isMade}
+        tasks.filter{$0.isMade == true}
     }
-   
+    var status:String{
+        if tasks.count > 0{
+            if (Double(madeTasks.count) / Double(tasks.count)) > 0 && (Double(madeTasks.count) / Double(tasks.count) ) < 1{
+                return "In Progress"
+            }else if madeTasks.count == tasks.count {
+                return "Done"
+            }else{
+               
+                return "To Do"
+               
+            }
+        }else{
+            return "To Do"
+        }
+    }
+    var statusFIlterInt:Int{
+        switch status{
+        case  "To Do":
+            return 1
+        case "In Progress":
+            return 2
+        case  "Done":
+            return 0
+        default:
+            return 0
+        }
+    }
     
+    var checkColorOfStatusCircl: Color{
+        if status == "In Progress"{
+            return Color.blue
+        }else if status == "Done"{
+            return Color.green
+        }else{
+            return Color.gray
+        }
+    }
     static let example = Project(name: "New ajsajshashaas", description: "Make An App",tasks: [Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar")])
     
 }
@@ -54,5 +89,12 @@ class ProjectsArray:ObservableObject{
                 projects = decoded
             }
         }
+    }
+    
+}
+
+struct Previews_ProjectStrcut_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

@@ -115,11 +115,21 @@ struct FullRowView: View {
                         Text("\(project.madeTasks.count)/\(project.tasks.count) Tasks")
                             .font(.title3.weight(.semibold))
                             .matchedGeometryEffect(id: "\(project.name)madeText", in: nameSpace)
-                        Text(project.description)
-                            .font(.footnote.weight(.light))
-                            .matchedGeometryEffect(id: "\(project.name)description", in: nameSpace)
-                        
-                        
+                        HStack{
+                            
+                            Text(project.description)
+                                .font(.footnote.weight(.light))
+                                .matchedGeometryEffect(id: "\(project.name)description", in: nameSpace)
+                            Spacer()
+                            HStack{
+                                Circle()
+                                    .fill(project.checkColorOfStatusCircl)
+                                    .frame(width: 12,height: 12)
+                                    
+                                Text(project.status)
+                                    .foregroundColor(project.checkColorOfStatusCircl)
+                            }
+                        }
                         
                         
                     }

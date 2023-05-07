@@ -24,7 +24,7 @@ struct MainView: View {
             
             ScrollView( showsIndicators: false){
              
-                ForEach(Array(Projects.projects.indices) , id: \.self){index in
+                ForEach(Array(Projects.projects.indices.sorted{Projects.projects[$0].statusFIlterInt > Projects.projects[$1].statusFIlterInt }) , id: \.self){index in
                         let selectedcolor = Color.randomColor()
                         
                     RowView(project: Projects.projects[index], nameSpace: nameSpace, showFull: $showFull,showaddView: $showAddView, color: selectedcolor)

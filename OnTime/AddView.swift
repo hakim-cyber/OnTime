@@ -25,7 +25,7 @@ struct AddView: View {
     @State private var newProjectDescription = ""
     
     @State private var showAlertNewProject = false
-    
+    @State private var Tags:[String] = []
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -52,7 +52,20 @@ struct AddView: View {
                         HStack{
                             RoundedButtonAddView(text: "Today", textColor: dateOfTask == .today ? .white : .black, backgroundColor: dateOfTask == .today ? .black : .white, action: {withAnimation{dateOfTask = .today}})
                             RoundedButtonAddView(text: "Tomorrow", textColor: dateOfTask == .tomorrow ? .white : .black, backgroundColor: dateOfTask == .tomorrow ? .black : .white, action: {withAnimation{dateOfTask = .tomorrow}})
-                            RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .white, action: {},image: "ellipsis")
+                            Menu{
+                                Button("This Week"){
+                                    dateOfTask = .thisWeek
+                                }
+                                Button("This Month"){
+                                    dateOfTask = .thisMonth
+                                }
+                                Button("This Year"){
+                                    dateOfTask = .thisYear
+                                }
+                            }label: {
+                                RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .white, action: {},image: "ellipsis")
+                            }
+                           
                             Spacer()
                         }
                         HStack{
@@ -117,6 +130,22 @@ struct AddView: View {
                                 .padding(.horizontal,20)
                                 .padding(.vertical,2)
                                 .labelsHidden()
+                            Text("Tags")
+                                .font(.system(.subheadline, design: .default))
+                                .fontWeight(.light)
+                                .foregroundColor(.gray)
+                                .padding(.horizontal,6)
+                                .padding(5)
+                            ScrollView(.horizontal,showsIndicators: false){
+                                HStack{
+                                    RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .white, action: {showAlertNewProject = true},image: "plus")
+                                    ForEach(projects.projects){project in
+                                       
+                                      
+                                    }
+                                }
+                                .padding()
+                            }
                             
                         }
                         Spacer()
