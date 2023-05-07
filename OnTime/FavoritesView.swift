@@ -20,10 +20,15 @@ struct FavoritesView: View {
     
     var body: some View {
         ZStack{
-           
-            
             ScrollView( showsIndicators: false){
-             
+                VStack{
+                    
+                    Text("Favorites")
+                        .font(.system(.largeTitle, design: .monospaced))
+                        .fontWeight(.black)
+                        .padding()
+                    Spacer()
+                }
                 ForEach(Array(Projects.projects.indices.sorted{Projects.projects[$0].statusFIlterInt > Projects.projects[$1].statusFIlterInt }).filter{Projects.projects[$0].isFavourite} , id: \.self){index in
                         let selectedcolor = Color.randomColor()
                         
@@ -48,8 +53,7 @@ struct FavoritesView: View {
                 
                 
             }
-            .coordinateSpace(name: "scroll")
-            .safeAreaInset(edge: .top, content: {Color.clear.frame(height: 70)})
+      
             if showFull{
                 if selected != nil{
                     if  let selectedColor = selectedColor{
@@ -81,6 +85,7 @@ struct FavoritesView: View {
                 .environmentObject(Projects)
        
         }
+      
     }
     func saveSelected(){
         if let selected = selected{
@@ -101,7 +106,9 @@ struct FavoritesView: View {
 
 struct FavoritesView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoritesView(showingFull: {}, showAddView: .constant(false))
-            .environmentObject(ProjectsArray())
+       
+            FavoritesView(showingFull: {}, showAddView: .constant(false))
+                .environmentObject(ProjectsArray())
+        
     }
 }

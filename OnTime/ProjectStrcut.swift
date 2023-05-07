@@ -66,6 +66,15 @@ struct Task:Codable,Identifiable{
     let name:String
     var description:String
     var isMade = false
+    
+    var MadeSortInt:Int{
+        switch isMade{
+        case false:
+            return 0
+        case true:
+            return 1
+        }
+    }
 }
 
 

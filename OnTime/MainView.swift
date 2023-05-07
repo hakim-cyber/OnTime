@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+enum Filters{
+    case all,done,OnGoing,ToDo
+}
 
 struct MainView: View {
     @EnvironmentObject var Projects:ProjectsArray
+    
+    @Environment(\.colorScheme) var colorSheme
     var showFavourite:Bool?
     var showingFull:()->Void
+    
+    @State var filter = Filters.all
     
     @Namespace var nameSpace
     @State  var selected:Int?
@@ -20,17 +27,27 @@ struct MainView: View {
     
     var body: some View {
         ZStack{
-           
+            
+       
             
             ScrollView( showsIndicators: false){
-             
-                ForEach(Array(Projects.projects.indices.sorted{Projects.projects[$0].statusFIlterInt > Projects.projects[$1].statusFIlterInt }) , id: \.self){index in
+               
+                    VStack{
+                        Text("Main")
+                            .font(.system(.largeTitle, design: .monospaced))
+                            .fontWeight(.black)
+                            .padding()
+                       
+                    }
+                
+               
+                ForEach(Array(Projects.projects.indices.sorted{Projects.projects[$0].statusFIlterInt > Projects.projects[$1].statusFIlterInt}) , id: \.self){index in
                         let selectedcolor = Color.randomColor()
                         
                     RowView(project: Projects.projects[index], nameSpace: nameSpace, showFull: $showFull,showaddView: $showAddView, color: selectedcolor)
                             
                             .opacity(showFull ? 0:1)
-                            .shadow(radius: 40)
+                            .shadow(color: .gray,radius: 5)
                             .onTapGesture {
                                 withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
                                     withAnimation(.easeInOut(duration: 0.5)) {
@@ -48,8 +65,7 @@ struct MainView: View {
                 
                 
             }
-            .coordinateSpace(name: "scroll")
-            .safeAreaInset(edge: .top, content: {Color.clear.frame(height: 70)})
+           
             if showFull{
                 if selected != nil{
                     if  let selectedColor = selectedColor{
@@ -97,6 +113,7 @@ struct MainView: View {
             return Projects.projects
         }
     }
+   
 }
 
 struct MainView_Previews: PreviewProvider {

@@ -14,13 +14,14 @@ struct RowView: View {
     
     @Binding var showFull:Bool
     @Binding var showaddView:Bool
-    
+   
    var color:LinearGradient
     var body: some View {
         
         VStack{
             Spacer()
             VStack(alignment: .leading, spacing: 12){
+                VStack(alignment: .leading, spacing: 12){
                 HStack{
                     Text(project.name)
                         .font(.largeTitle.weight(.bold))
@@ -37,10 +38,10 @@ struct RowView: View {
                     }
                     .matchedGeometryEffect(id: "\(project.name)status", in: nameSpace)
                 }
-                    Text("\(project.madeTasks.count)/\(project.tasks.count) Tasks")
-                        .font(.title3.weight(.semibold))
-                        .matchedGeometryEffect(id: "\(project.name)madeText", in: nameSpace)
-                   
+                Text("\(project.madeTasks.count)/\(project.tasks.count) Tasks")
+                    .font(.title3.weight(.semibold))
+                    .matchedGeometryEffect(id: "\(project.name)madeText", in: nameSpace)
+                
                 
                 HStack{
                     Text("\(project.endTime .formatted(date: .numeric, time:.omitted))")
@@ -49,8 +50,10 @@ struct RowView: View {
                         .font(.callout.weight(.light))
                 }
                 .matchedGeometryEffect(id: "\(project.name)date", in: nameSpace)
-                   
                 
+            }
+                .padding(.horizontal,20)
+                .padding(.top,20)
                 ScrollView(.horizontal,showsIndicators: false){
                     HStack{
                         ForEach(project.tags,id:\.self){tag in
@@ -64,12 +67,16 @@ struct RowView: View {
                             }
                         }
                     }
+                    .padding(.horizontal,10)
                    
                 }
+                .padding(.vertical,9)
+              
+                
                 .matchedGeometryEffect(id: "\(project.name)tags", in: nameSpace)
                 
             }
-            .padding(20)
+           
             .background(
             Rectangle()
                 .fill(.ultraThinMaterial)
@@ -92,8 +99,9 @@ struct RowView: View {
                 .foregroundColor(project.isFavourite ? .red : .gray)
                 .font(.system(size: 30))
                 .padding(15)
+                .matchedGeometryEffect(id: "\(project.name)heart", in: nameSpace)
         }
-        .frame(height: 260)
+        .frame(height: 270)
         .padding(30)
         
         

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
    @StateObject var projects = ProjectsArray()
     @State private var selectedTab:Tab = .house
@@ -16,6 +17,8 @@ struct ContentView: View {
     @State var startX:CGFloat = UIScreen.main.bounds.width * -0.20
     @State var currentDragOffsetX:CGFloat = 0
     @State var endX:CGFloat = 0
+    
+    
     
     
     init(){
@@ -32,13 +35,14 @@ struct ContentView: View {
                                     MainView( showingFull: {showTabBar.toggle()}, showAddView: $showAddView)
                                         .environmentObject(projects)
                                         .tag(tab)
-                                        .preferredColorScheme(.dark)
+                                        
                                     }
                             if tab == .heart{
                                 FavoritesView( showingFull: {showTabBar.toggle()}, showAddView: $showAddView)
+                                   
                                     .environmentObject(projects)
                                     .tag(tab)
-                                    .preferredColorScheme(.dark)
+                                   
                                
                             }
                             if tab == .person{
@@ -67,15 +71,17 @@ struct ContentView: View {
                 showTabBar = true
                 projects.loadProjects()
             }
+          
            
         }
     }
+    
     
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .preferredColorScheme(.dark)
+            
     }
 }

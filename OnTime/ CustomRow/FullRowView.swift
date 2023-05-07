@@ -52,15 +52,17 @@ struct FullRowView: View {
                     Toggle("", isOn: $project.isFavourite)
                         .labelsHidden()
                         .toggleStyle(HeartToggleStyle(size: 30))
+                        .matchedGeometryEffect(id: "\(project.name)heart", in: nameSpace)
                         .padding(.horizontal,30)
                         .padding(.vertical,55)
                         .ignoresSafeArea()
+                       
                     
                 }
                 
                 ScrollView(.vertical,showsIndicators: false){
                     VStack{
-                        ForEach(Array(project.tasks.indices),id:\.self){index in
+                        ForEach(Array(project.tasks.indices.sorted{project.tasks[$0].MadeSortInt < project.tasks[$1].MadeSortInt }),id:\.self){index in
                             TasksListRow(color: color, task: $project.tasks[index])
                             
                         }
@@ -68,6 +70,7 @@ struct FullRowView: View {
                     .frame(maxWidth: .infinity)
                     
                 }
+                
                 
                 .padding()
                 .background(
@@ -133,25 +136,43 @@ struct FullRowView: View {
                                 .font(.callout.weight(.light))
                         }
                         .matchedGeometryEffect(id: "\(project.name)date", in: nameSpace)
-                        ScrollView(.horizontal,showsIndicators: false){
-                            HStack{
-                                ForEach(project.tags,id:\.self){tag in
-                                    ZStack{
-                                        
-                                        RoundedRectangle(cornerRadius: 30).fill(.white)
-                                            .frame(height:30)
-                                        Text(tag)
-                                            .foregroundColor(.black)
-                                            .padding(.horizontal,10)
+                        HStack{
+                            ScrollView(.horizontal,showsIndicators: false){
+                                HStack{
+                                    ForEach(project.tags,id:\.self){tag in
+                                        ZStack{
+                                            
+                                            RoundedRectangle(cornerRadius: 30).fill(.white)
+                                                .frame(height:30)
+                                            Text(tag)
+                                                .foregroundColor(.black)
+                                                .padding(.horizontal,10)
+                                        }
                                     }
                                 }
                             }
+                            .matchedGeometryEffect(id: "\(project.name)tags", in: nameSpace)
+                            
+                            Spacer()
+                            Button{
+                                withAnimation {
+                                    showaddView = true
+                                }
+                             
+                            }label: {
+                                Image(systemName: "plus")
+                                    .font(.title3.weight(.bold))
+                                    .foregroundColor(.secondary)
+                                    .padding(8)
+                                    .background(.ultraThinMaterial,in:Circle())
+                                   
+                            }
+                           
+                            
                         }
-                        .matchedGeometryEffect(id: "\(project.name)tags", in: nameSpace)
-                       
-                        
-                        
-                        
+                        Text(project.description)
+                            .font(.callout)
+                            .foregroundColor(.secondary)
                     }
                     .padding(20)
                     .background(
@@ -171,22 +192,8 @@ struct FullRowView: View {
                
               
                    
-                        Button{
-                            withAnimation {
-                                showaddView = true
-                            }
-                         
-                        }label: {
-                            Image(systemName: "plus")
-                                .font(.largeTitle.weight(.bold))
-                                .foregroundColor(.secondary)
-                                .padding(15)
-                                .background(.ultraThinMaterial,in:Circle())
-                               
-                        }
-                        .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
+                        
                        
-                        .offset(y:135)
                         
                 
             }
