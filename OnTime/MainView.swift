@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var Projects:ProjectsArray
-    
+    var showFavourite:Bool?
     var showingFull:()->Void
     
     @Namespace var nameSpace
@@ -89,10 +89,13 @@ struct MainView: View {
                 Projects.saveProjects()
             
         }
-        
-        
-        
-        
+    }
+    var projectsArray:[Project]{
+        if showFavourite!{
+            return Projects.favoritesArray
+        }else{
+            return Projects.projects
+        }
     }
 }
 

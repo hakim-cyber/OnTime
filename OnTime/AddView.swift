@@ -25,7 +25,9 @@ struct AddView: View {
     @State private var newProjectDescription = ""
     
     @State private var showAlertNewProject = false
+    @State private var showAlertNewTag = false
     @State private var Tags:[String] = []
+    @State private var tag = ""
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -130,25 +132,31 @@ struct AddView: View {
                                 .padding(.horizontal,20)
                                 .padding(.vertical,2)
                                 .labelsHidden()
-                            Text("Tags")
-                                .font(.system(.subheadline, design: .default))
-                                .fontWeight(.light)
-                                .foregroundColor(.gray)
-                                .padding(.horizontal,6)
-                                .padding(5)
-                            ScrollView(.horizontal,showsIndicators: false){
-                                HStack{
-                                    RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .white, action: {showAlertNewProject = true},image: "plus")
-                                    ForEach(projects.projects){project in
-                                       
-                                      
+                            if selectedProject != nil{
+                                Text("Tags")
+                                    .font(.system(.subheadline, design: .default))
+                                    .fontWeight(.light)
+                                    .foregroundColor(.gray)
+                                    .padding(.horizontal,6)
+                                    .padding(5)
+                                ScrollView(.horizontal,showsIndicators: false){
+                                    HStack{
+                                        
+                                        RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .white, action: {showAlertNewTag = true},image: "plus")
+                                        
+                                        ForEach(selectedProject!.tags,id:\.self){tag in
+                                            RoundedButtonAddView(text: tag, textColor: .white, backgroundColor: .green, action: {})
+                                            
+                                        }
                                     }
+                                    .padding(.horizontal)
+                                 
                                 }
-                                .padding()
+                                
                             }
                             
                         }
-                        Spacer()
+                      
                     }
                     
                 }
@@ -157,6 +165,7 @@ struct AddView: View {
         .onAppear{
             if !(projects.projects.isEmpty){
                 selectedProject = projects.projects[0]
+                
             }
         }
         .alert("New Project", isPresented: $showAlertNewProject){
@@ -167,6 +176,13 @@ struct AddView: View {
 
                 .foregroundColor(.gray)
                         Button("Add", action: {addNewProject()})
+                        Button("Cancel", role: .cancel, action: {})
+        }
+        .alert("New Tag", isPresented: $showAlertNewTag){
+            
+                        TextField("Title", text: $tag)
+                .foregroundColor(.gray)
+            Button("Add", action: {addNewTag()})
                         Button("Cancel", role: .cancel, action: {})
         }
         .safeAreaInset(edge: VerticalEdge.bottom){
@@ -193,10 +209,32 @@ struct AddView: View {
                 let task = Task(name: nameOfTask, description: descriptionOfTask)
                 
                 projects.projects[indexOfProject].tasks.append(task)
-              
+                projects.projects[indexOfProject].endTime = calculateDateOfTask()
                 change()
             }
         }
+    }
+    func calculateDateOfTask()-> Date{
+        let now = Date()
+        let today = now + 43200
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: now)!
+        let thisweek = Calendar.current.date(byAdding: .day, value: 7, to: now)!
+        let thisMonth = Calendar.current.date(byAdding: .month, value: 1, to: now)!
+        let thisYear = Calendar.current.date(byAdding: .year, value: 1, to: now)!
+        
+        switch dateOfTask {
+        case .today:
+            return today
+        case .tomorrow:
+            return tomorrow
+        case .thisWeek:
+            return thisweek
+        case .thisMonth:
+            return thisMonth
+        case .thisYear:
+            return thisYear
+        }
+       
     }
     func addNewProject(){
         let newProject = Project(name: newProjectName, description: newProjectDescription, tasks: [Task]())
@@ -210,6 +248,16 @@ struct AddView: View {
         
         newProjectName = ""
         newProjectDescription = ""
+    }
+    func addNewTag(){
+        if selectedProject != nil{
+            if let indexOfSelected =   projects.projects.firstIndex(where: {$0.id == selectedProject?.id}){
+                selectedProject?.tags.append(tag)
+                projects.projects[indexOfSelected].tags = (selectedProject)!.tags
+                change()
+            }
+        }
+        tag = ""
     }
 }
 

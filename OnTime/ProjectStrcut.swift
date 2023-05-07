@@ -15,6 +15,8 @@ struct Project:Codable,Identifiable{
     let description:String
     var tasks :[Task]
     var isFavourite = false
+    var tags:[String] = []
+    var endTime = Date()
     
     var madeTasks:[Task]{
         tasks.filter{$0.isMade == true}
