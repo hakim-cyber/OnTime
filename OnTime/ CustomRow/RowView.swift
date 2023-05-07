@@ -64,6 +64,7 @@ struct RowView: View {
                             }
                         }
                     }
+                   
                 }
                 .matchedGeometryEffect(id: "\(project.name)tags", in: nameSpace)
                 
@@ -85,6 +86,12 @@ struct RowView: View {
         .mask{
             RoundedRectangle(cornerRadius: 30,style: .continuous)
                 .matchedGeometryEffect(id: "\(project.name)mask", in: nameSpace)
+        }
+        .overlay(alignment: .topLeading){
+            Image(systemName: project.isFavourite ? "heart.fill" : "heart")
+                .foregroundColor(project.isFavourite ? .red : .gray)
+                .font(.system(size: 30))
+                .padding(15)
         }
         .frame(height: 260)
         .padding(30)

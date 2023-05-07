@@ -35,10 +35,11 @@ struct ContentView: View {
                                         .preferredColorScheme(.dark)
                                     }
                             if tab == .heart{
-                                HStack{
-                                    Text("Coming Soon")
-                                }
-                                .tag(tab)
+                                FavoritesView( showingFull: {showTabBar.toggle()}, showAddView: $showAddView)
+                                    .environmentObject(projects)
+                                    .tag(tab)
+                                    .preferredColorScheme(.dark)
+                               
                             }
                             if tab == .person{
                                 HStack{
