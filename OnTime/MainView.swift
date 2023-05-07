@@ -20,10 +20,17 @@ struct MainView: View {
     
     var body: some View {
         ZStack{
-           
-            
             ScrollView( showsIndicators: false){
-             
+                HStack{
+                    VStack(alignment: .leading){
+                        
+                        Text("Main")
+                            .font(.system(.largeTitle, design: .monospaced))
+                            .fontWeight(.black)
+                            .padding()
+                    }
+                    Spacer()
+                }
                 ForEach(Array(Projects.projects.indices.sorted{Projects.projects[$0].statusFIlterInt > Projects.projects[$1].statusFIlterInt }) , id: \.self){index in
                         let selectedcolor = Color.randomColor()
                         

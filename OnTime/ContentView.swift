@@ -36,6 +36,7 @@ struct ContentView: View {
                                     }
                             if tab == .heart{
                                 FavoritesView( showingFull: {showTabBar.toggle()}, showAddView: $showAddView)
+                                   
                                     .environmentObject(projects)
                                     .tag(tab)
                                     .preferredColorScheme(.dark)
@@ -67,9 +68,11 @@ struct ContentView: View {
                 showTabBar = true
                 projects.loadProjects()
             }
+          
            
         }
     }
+    
     
 }
 
