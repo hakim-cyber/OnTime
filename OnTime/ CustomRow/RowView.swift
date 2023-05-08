@@ -100,10 +100,18 @@ struct RowView: View {
                         }
                         .onEnded { gesture in
                             if gesture.translation.width < -100 {
-                                showDelete = true
+                                withAnimation {
+                                    showDelete = true
+                                }
+                              
                             } else {
-                                showDelete = false
-                                offset = .zero
+                           
+                                withAnimation {
+                                    showDelete = false
+                                    offset = .zero
+                                    
+                                }
+                               
                             }
                         }
                 )
@@ -127,8 +135,7 @@ struct RowView: View {
             .frame(height: 270)
             .padding(30)
             .offset(x: offset.width)
-            .animation(.spring(response: 0.2, dampingFraction: 0.7))
-            
+            .animation(.spring())
             if showDelete{
                 HStack{
                     Spacer()
