@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 struct SettingsView: View {
     @EnvironmentObject var projects:ProjectsArray
@@ -13,6 +14,8 @@ struct SettingsView: View {
     @State private var inputImage:UIImage? = UIImage(named: "default")
     @State private var name = "Unknown"
     @State private var email = "unknown@email.com"
+    
+    @State private var showScan = false
     var body: some View {
         VStack{
             VStack(alignment: .center){
@@ -50,7 +53,9 @@ struct SettingsView: View {
             Spacer()
             Form{
                 Section("Content"){
-                    Text("Coming Soon...")
+                    Button("Scan"){
+                        showScan = true
+                    }
                 }
                
                 Section("Preferences"){
@@ -64,6 +69,10 @@ struct SettingsView: View {
         .sheet(isPresented: $showingEditView,onDismiss: {saveSettings()}){
             SettingsEditView(email: $email, name: $name, image: $inputImage)
                     }
+        .sheet(isPresented: $showScan){
+           
+            CodeScannerView(codeTypes:[.qr],completion: handleScan)
+        }
         .onAppear{
             
             loadSettings()
@@ -83,6 +92,24 @@ struct SettingsView: View {
         inputImage =  projects.settings.image.image()
        name = projects.settings.name
        email = projects.settings.email
+    }
+    
+    func handleScan(result:Result<ScanResult,ScanError>){
+        showScan = false
+        
+        switch result{
+        case .success(let result):
+            if let data = result.string.data(using: .utf8){
+                if let decodedData = try? JSONDecoder().decode([Project].self, from: data) {
+                    if !decodedData.isEmpty{
+                        print(decodedData.first?.name)
+                    }
+                }
+            }
+        case .failure(let error):
+            print("scanning Error \(error.localizedDescription)")
+        }
+        
     }
 }
 
