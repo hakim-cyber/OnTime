@@ -76,22 +76,34 @@ struct Task:Codable,Identifiable{
         }
     }
 }
-
+struct Settings:Codable{
+    var name = "YourName"
+    var image:ImageWrapper = ImageWrapper(UIImage(named: "default")!)
+    var email:String = "unknown@email.com"
+}
 
 class ProjectsArray:ObservableObject{
     let saveKey = "Projects"
+    let settingsSaveKey = "Settings"
     @Published var projects = [Project]()
-   @Published var example = [Project(name: "New ", description: "Make An App",tasks: [Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar")]),Project(name: "New 2", description: "Make An App",tasks: [Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar")]),Project(name: "New 3", description: "Make An App",tasks: [Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar")])]
     var favoritesArray:[Project]{
         return projects.filter{$0.isFavourite}
     }
+    
+@Published var settings = Settings()
+    
     init(){
         loadProjects()
     }
     func saveProjects(){
-       
         if let encoded = try? JSONEncoder().encode(projects){
             UserDefaults.standard.set(encoded, forKey: saveKey)
+        }
+    }
+    func saveSettings(){
+      
+        if let encoded = try? JSONEncoder().encode(settings){
+            UserDefaults.standard.set(encoded, forKey: settingsSaveKey)
         }
     }
     func loadProjects(){
@@ -101,7 +113,13 @@ class ProjectsArray:ObservableObject{
             }
         }
     }
-    
+    func loadSettings(){
+        if let data = UserDefaults.standard.data(forKey: settingsSaveKey){
+            if let decoded = try? JSONDecoder().decode(Settings.self, from: data){
+                settings = decoded
+            }
+        }
+    }
 }
 
 struct Previews_ProjectStrcut_Previews: PreviewProvider {

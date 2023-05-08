@@ -19,7 +19,7 @@ struct CustomTabBar: View {
     private var fillImage:String{
         selectedTab.rawValue + ".fill"
     }
-    
+    @Namespace var namespace
     var body: some View {
         VStack{
             HStack{
@@ -39,11 +39,13 @@ struct CustomTabBar: View {
                                     selectedTab = tab
                                 }
                             }
+                            .matchedGeometryEffect(id: "\(tab.rawValue) ", in: namespace)
                         if selectedTab == tab{
                                                    Rectangle()
                                                        .fill(Color.green)
                                                        .frame(width: 20,height: 1.5)
                                                        .offset(y:15)
+                                                       .matchedGeometryEffect(id: "\(selectedTab.rawValue) ", in: namespace)
                                                       
                                                        
                                                        

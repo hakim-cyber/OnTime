@@ -21,6 +21,9 @@
 		08149F2C2A044037008DA526 /* TasksListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F2B2A044037008DA526 /* TasksListRow.swift */; };
 		08149F2E2A044FD7008DA526 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F2D2A044FD7008DA526 /* CustomTabBar.swift */; };
 		08149F302A0587EA008DA526 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08149F2F2A0587EA008DA526 /* AddView.swift */; };
+		082CC9122A097F9D00D7F345 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9112A097F9D00D7F345 /* SettingsView.swift */; };
+		082CC9142A09881200D7F345 /* SettingsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9132A09881200D7F345 /* SettingsEditView.swift */; };
+		082CC9162A09929500D7F345 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9152A09929500D7F345 /* ScanView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,10 @@
 		08149F2B2A044037008DA526 /* TasksListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListRow.swift; sourceTree = "<group>"; };
 		08149F2D2A044FD7008DA526 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		08149F2F2A0587EA008DA526 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		082CC9112A097F9D00D7F345 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		082CC9132A09881200D7F345 /* SettingsEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditView.swift; sourceTree = "<group>"; };
+		082CC9152A09929500D7F345 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
+		082CC9172A09948E00D7F345 /* CodeScanner */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CodeScanner; path = "../../../../../Library/Developer/Xcode/DerivedData/HotProspects-feepllqbcsrlocfhwwuwamwilbld/SourcePackages/checkouts/CodeScanner"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +80,13 @@
 			children = (
 				08149F062A019280008DA526 /* OnTimeApp.swift */,
 				08149F082A019280008DA526 /* ContentView.swift */,
+				082CC9152A09929500D7F345 /* ScanView.swift */,
 				08149F2F2A0587EA008DA526 /* AddView.swift */,
 				08149F202A01A207008DA526 /* FavoritesView.swift */,
 				08149F1E2A01A0E5008DA526 /* MainView.swift */,
 				08149F2D2A044FD7008DA526 /* CustomTabBar.swift */,
+				082CC9112A097F9D00D7F345 /* SettingsView.swift */,
+				082CC9132A09881200D7F345 /* SettingsEditView.swift */,
 				08149F282A026748008DA526 /*  CustomRow */,
 				08149F1C2A019E84008DA526 /* ProjectStrcut.swift */,
 				08149F162A019373008DA526 /* features.swift */,
@@ -90,6 +100,7 @@
 		08149F0C2A019282008DA526 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				082CC9172A09948E00D7F345 /* CodeScanner */,
 				08149F0D2A019282008DA526 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -177,9 +188,11 @@
 			files = (
 				08149F302A0587EA008DA526 /* AddView.swift in Sources */,
 				08149F1D2A019E84008DA526 /* ProjectStrcut.swift in Sources */,
+				082CC9162A09929500D7F345 /* ScanView.swift in Sources */,
 				08149F252A0265F8008DA526 /* RowView.swift in Sources */,
 				08149F1F2A01A0E5008DA526 /* MainView.swift in Sources */,
 				08149F2E2A044FD7008DA526 /* CustomTabBar.swift in Sources */,
+				082CC9142A09881200D7F345 /* SettingsEditView.swift in Sources */,
 				08149F172A019373008DA526 /* features.swift in Sources */,
 				08149F092A019280008DA526 /* ContentView.swift in Sources */,
 				08149F212A01A207008DA526 /* FavoritesView.swift in Sources */,
@@ -187,6 +200,7 @@
 				08149F072A019280008DA526 /* OnTimeApp.swift in Sources */,
 				08149F272A02672E008DA526 /* FullRowView.swift in Sources */,
 				08149F152A019310008DA526 /* ContentViewModel.swift in Sources */,
+				082CC9122A097F9D00D7F345 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +332,7 @@
 				DEVELOPMENT_TEAM = 5ZS2H97WX7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to use your Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -348,6 +363,7 @@
 				DEVELOPMENT_TEAM = 5ZS2H97WX7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to use your Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

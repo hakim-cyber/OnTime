@@ -67,7 +67,7 @@ struct RowView: View {
                             }
                         }
                     }
-                    .padding(.horizontal,10)
+                    .padding(.horizontal,20)
                    
                 }
                 .padding(.vertical,9)

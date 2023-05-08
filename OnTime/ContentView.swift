@@ -46,9 +46,8 @@ struct ContentView: View {
                                
                             }
                             if tab == .person{
-                                HStack{
-                                    Text("Coming Soon")
-                                }
+                                SettingsView()
+                                    .environmentObject(projects)
                                 .tag(tab)
                                 
                             }
