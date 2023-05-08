@@ -10,12 +10,14 @@ import SwiftUI
 struct RowView: View {
     var project:Project
     
+    
     var nameSpace:Namespace.ID
     
     @Binding var showFull:Bool
     @Binding var showaddView:Bool
    
    var color:LinearGradient
+    var deleting:(Project)->Void
     var body: some View {
         
         VStack{
@@ -101,6 +103,25 @@ struct RowView: View {
                 .padding(15)
                 .matchedGeometryEffect(id: "\(project.name)heart", in: nameSpace)
         }
+        .overlay(alignment: .topTrailing){
+            Menu{
+                Button{
+                    deleting(project)
+                }label: {
+                    HStack{
+                        Text("Delete")
+                        Image(systemName: "trash.fill")
+                    
+                    }
+                }
+            }label: {
+                Image(systemName: "ellipsis.circle")
+                    .foregroundColor(.gray)
+                    .font(.system(size: 30))
+                    .padding(15)
+                    
+            }
+        }
         .frame(height: 270)
         .padding(30)
         
@@ -112,6 +133,8 @@ struct RowView: View {
 struct RowView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        RowView(project: Project.example,nameSpace: namespace, showFull: .constant(true), showaddView: .constant(false), color: Color.randomColor())
+        RowView(project: Project.example,nameSpace: namespace, showFull: .constant(true), showaddView: .constant(false), color: Color.randomColor()){_ in
+            
+        }
     }
 }

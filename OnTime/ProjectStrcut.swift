@@ -120,6 +120,15 @@ class ProjectsArray:ObservableObject{
             }
         }
     }
+    func deleteProject(project:Project){
+        if let indexOfDeleting = projects.firstIndex(where: {$0.id == project.id}){
+       
+                projects.remove(at: indexOfDeleting)
+            saveProjects()
+          
+            
+        }
+    }
 }
 
 struct Previews_ProjectStrcut_Previews: PreviewProvider {

@@ -25,6 +25,7 @@
 		082CC9142A09881200D7F345 /* SettingsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9132A09881200D7F345 /* SettingsEditView.swift */; };
 		082CC9162A09929500D7F345 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9152A09929500D7F345 /* ScanView.swift */; };
 		082CC91B2A0994DC00D7F345 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 082CC91A2A0994DC00D7F345 /* CodeScanner */; };
+		082CC91D2A099ABE00D7F345 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC91C2A099ABE00D7F345 /* ShareView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		082CC9132A09881200D7F345 /* SettingsEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditView.swift; sourceTree = "<group>"; };
 		082CC9152A09929500D7F345 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		082CC9172A09948E00D7F345 /* CodeScanner */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CodeScanner; path = "../../../../../Library/Developer/Xcode/DerivedData/HotProspects-feepllqbcsrlocfhwwuwamwilbld/SourcePackages/checkouts/CodeScanner"; sourceTree = "<group>"; };
+		082CC91C2A099ABE00D7F345 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				08149F1E2A01A0E5008DA526 /* MainView.swift */,
 				08149F2D2A044FD7008DA526 /* CustomTabBar.swift */,
 				082CC9112A097F9D00D7F345 /* SettingsView.swift */,
+				082CC91C2A099ABE00D7F345 /* ShareView.swift */,
 				082CC9132A09881200D7F345 /* SettingsEditView.swift */,
 				08149F282A026748008DA526 /*  CustomRow */,
 				08149F1C2A019E84008DA526 /* ProjectStrcut.swift */,
@@ -202,6 +205,7 @@
 				08149F2E2A044FD7008DA526 /* CustomTabBar.swift in Sources */,
 				082CC9142A09881200D7F345 /* SettingsEditView.swift in Sources */,
 				08149F172A019373008DA526 /* features.swift in Sources */,
+				082CC91D2A099ABE00D7F345 /* ShareView.swift in Sources */,
 				08149F092A019280008DA526 /* ContentView.swift in Sources */,
 				08149F212A01A207008DA526 /* FavoritesView.swift in Sources */,
 				08149F2C2A044037008DA526 /* TasksListRow.swift in Sources */,
@@ -340,6 +344,7 @@
 				DEVELOPMENT_TEAM = 5ZS2H97WX7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need To Scan Qr Code";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to use your Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -371,6 +376,7 @@
 				DEVELOPMENT_TEAM = 5ZS2H97WX7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need To Scan Qr Code";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to use your Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

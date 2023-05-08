@@ -16,8 +16,20 @@ struct SettingsView: View {
     @State private var email = "unknown@email.com"
     
     @State private var showScan = false
+    @State private var showShareView = false
+    
     var body: some View {
         VStack{
+            HStack{
+                Spacer()
+                Button{
+                    showScan = true
+                }label: {
+                    Image(systemName: "qrcode.viewfinder")
+                        .font(.title)
+                }
+                .padding(.horizontal)
+            }
             VStack(alignment: .center){
                 Image(uiImage: inputImage!)
                     .resizable()
@@ -53,8 +65,14 @@ struct SettingsView: View {
             Spacer()
             Form{
                 Section("Content"){
-                    Button("Scan"){
-                        showScan = true
+                    
+                    Button{
+                        showShareView = true
+                    }label: {
+                        HStack{
+                         Image(systemName: "square.and.arrow.up")
+                            Text("Share Projects")
+                        }
                     }
                 }
                
@@ -70,8 +88,10 @@ struct SettingsView: View {
             SettingsEditView(email: $email, name: $name, image: $inputImage)
                     }
         .sheet(isPresented: $showScan){
-           
             CodeScannerView(codeTypes:[.qr],completion: handleScan)
+        }
+        .sheet(isPresented: $showShareView){
+            ShareView(allProjects: projects.projects)
         }
         .onAppear{
             
@@ -102,7 +122,11 @@ struct SettingsView: View {
             if let data = result.string.data(using: .utf8){
                 if let decodedData = try? JSONDecoder().decode([Project].self, from: data) {
                     if !decodedData.isEmpty{
-                        print(decodedData.first?.name)
+                        for decodedProject in decodedData{
+                            projects.projects.append(decodedProject)
+                        }
+                        projects.saveProjects()
+                        
                     }
                 }
             }

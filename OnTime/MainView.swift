@@ -44,7 +44,12 @@ struct MainView: View {
                 ForEach(Array(Projects.projects.indices.sorted{Projects.projects[$0].statusFIlterInt > Projects.projects[$1].statusFIlterInt}) , id: \.self){index in
                         let selectedcolor = Color.randomColor()
                         
-                    RowView(project: Projects.projects[index], nameSpace: nameSpace, showFull: $showFull,showaddView: $showAddView, color: selectedcolor)
+                    RowView(project: Projects.projects[index], nameSpace: nameSpace, showFull: $showFull,showaddView: $showAddView, color: selectedcolor){ deletedProject in
+                        withAnimation {
+                            Projects.deleteProject(project: deletedProject)
+                        }
+                       
+                    }
                             
                             .opacity(showFull ? 0:1)
                             .shadow(color: .gray,radius: 5)
