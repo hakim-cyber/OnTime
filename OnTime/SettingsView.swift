@@ -88,7 +88,7 @@ struct SettingsView: View {
             SettingsEditView(email: $email, name: $name, image: $inputImage)
                     }
         .sheet(isPresented: $showScan){
-            CodeScannerView(codeTypes:[.qr],completion: handleScan)
+            CodeScannerView(codeTypes:[.qr],showViewfinder: true, shouldVibrateOnSuccess:true, completion: handleScan)
         }
         .sheet(isPresented: $showShareView){
             ShareView(allProjects: projects.projects)

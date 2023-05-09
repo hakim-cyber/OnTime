@@ -201,6 +201,7 @@ struct AddView: View {
                     .cornerRadius(30)
                     .padding()
             }
+            .disabled(nameOfTask == "" )
         }
     }
     func createTask(){

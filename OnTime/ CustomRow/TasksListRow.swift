@@ -16,7 +16,7 @@ struct TasksListRow: View {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.ultraThinMaterial)
                 .shadow(color: task.isMade ? .green : .black,radius: task.isMade ? 10 : 0)
-                .frame(height: 90)
+                .frame(height: 100)
             HStack{
                 Toggle("", isOn: $task.isMade)
                     .toggleStyle(CheckMarkToggleStyle())
@@ -35,6 +35,8 @@ struct TasksListRow: View {
                         .strikethrough(task.isMade)
                     
                 }
+                .frame(height: 100)
+                .padding(10)
             }
             .padding()
         }

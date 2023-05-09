@@ -151,6 +151,7 @@ struct FullRowView: View {
                                     }
                                 }
                             }
+                          
                             .matchedGeometryEffect(id: "\(project.name)tags", in: nameSpace)
                             
                             Spacer()
