@@ -54,13 +54,11 @@ struct MainView: View {
                             .opacity(showFull ? 0:1)
                             .shadow(color: .gray,radius: 5)
                             .onTapGesture {
-                                withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
-                                    withAnimation(.easeInOut(duration: 0.5)) {
-                                        selected = index
-                                        selectedColor = selectedcolor
-                                        showingFull()
-                                        showFull = true
-                                    }
+                                withAnimation(.easeIn(duration: 0.3)){
+                                    selected = index
+                                    selectedColor = selectedcolor
+                                    showingFull()
+                                    showFull = true
                                 }
                                 
                             }
@@ -77,9 +75,11 @@ struct MainView: View {
                       
                                 
                         FullRowView(showaddView: $showAddView,project: $Projects.projects[selected!], nameSpace: nameSpace,color: selectedColor){
-                            saveSelected()
-                            showingFull()
-                            showFull = false
+                            withAnimation(.easeOut(duration: 0.3)){
+                                saveSelected()
+                                showingFull()
+                                showFull = false
+                            }
                             
                         }
                         .preferredColorScheme(.dark)

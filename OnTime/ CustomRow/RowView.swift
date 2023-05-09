@@ -48,13 +48,7 @@ struct RowView: View {
                         CustomProgressViewTasks(made: project.madeTasks.count, total: project.tasks.count)
                             .matchedGeometryEffect(id: "\(project.name)made", in: nameSpace)
                         
-                        HStack{
-                            Text("\(project.endTime .formatted(date: .numeric, time:.omitted))")
-                                .font(.callout.weight(.light))
-                            Text("|  \(project.endTime .formatted(date: .omitted,time: .shortened))")
-                                .font(.callout.weight(.light))
-                        }
-                        .matchedGeometryEffect(id: "\(project.name)date", in: nameSpace)
+                        
                         
                     }
                     .padding(.horizontal,20)
@@ -133,7 +127,7 @@ struct RowView: View {
             .frame(height: 300)
             .padding(30)
             .offset(x: offset.width)
-            .animation(.spring())
+            .animation(.spring(response: 0.7))
             if showDelete{
                 HStack{
                     Spacer()

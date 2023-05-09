@@ -30,12 +30,11 @@ struct FullRowView: View {
                 .ignoresSafeArea()
                 .overlay(alignment: .topTrailing){
                     Button{
-                        withAnimation(.spring(response: 0.6,dampingFraction: 0.8)) {
-                            withAnimation(.easeInOut(duration: 0.5)) {
-                                
-                                close()
-                            }
-                        }
+                        
+                      
+                            close()
+                        
+                         
                     }label: {
                         Image(systemName: "xmark")
                             .font(.body.weight(.bold))
@@ -71,7 +70,6 @@ struct FullRowView: View {
                     
                 }
                 
-                
                 .padding()
                 .background(
                     Rectangle()
@@ -80,6 +78,7 @@ struct FullRowView: View {
                     
                 )
                 .padding(.horizontal,10)
+                .padding(.vertical,30)
                 .frame(height: 560)
                 .position(x: geo.size.width/2, y: geo.size.height/1.35)
                 
