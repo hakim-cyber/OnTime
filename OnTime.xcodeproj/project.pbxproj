@@ -26,6 +26,7 @@
 		082CC9162A09929500D7F345 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9152A09929500D7F345 /* ScanView.swift */; };
 		082CC91B2A0994DC00D7F345 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 082CC91A2A0994DC00D7F345 /* CodeScanner */; };
 		082CC91D2A099ABE00D7F345 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC91C2A099ABE00D7F345 /* ShareView.swift */; };
+		082CC91F2A0AD3F800D7F345 /* CustomProgressViewTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC91E2A0AD3F800D7F345 /* CustomProgressViewTasks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		082CC9152A09929500D7F345 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		082CC9172A09948E00D7F345 /* CodeScanner */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CodeScanner; path = "../../../../../Library/Developer/Xcode/DerivedData/HotProspects-feepllqbcsrlocfhwwuwamwilbld/SourcePackages/checkouts/CodeScanner"; sourceTree = "<group>"; };
 		082CC91C2A099ABE00D7F345 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		082CC91E2A0AD3F800D7F345 /* CustomProgressViewTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressViewTasks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		08149F282A026748008DA526 /*  CustomRow */ = {
 			isa = PBXGroup;
 			children = (
+				082CC91E2A0AD3F800D7F345 /* CustomProgressViewTasks.swift */,
 				08149F242A0265F8008DA526 /* RowView.swift */,
 				08149F262A02672E008DA526 /* FullRowView.swift */,
 				08149F2B2A044037008DA526 /* TasksListRow.swift */,
@@ -205,6 +208,7 @@
 				08149F2E2A044FD7008DA526 /* CustomTabBar.swift in Sources */,
 				082CC9142A09881200D7F345 /* SettingsEditView.swift in Sources */,
 				08149F172A019373008DA526 /* features.swift in Sources */,
+				082CC91F2A0AD3F800D7F345 /* CustomProgressViewTasks.swift in Sources */,
 				082CC91D2A099ABE00D7F345 /* ShareView.swift in Sources */,
 				08149F092A019280008DA526 /* ContentView.swift in Sources */,
 				08149F212A01A207008DA526 /* FavoritesView.swift in Sources */,

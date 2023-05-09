@@ -45,10 +45,8 @@ struct RowView: View {
                             }
                             .matchedGeometryEffect(id: "\(project.name)status", in: nameSpace)
                         }
-                        Text("\(project.madeTasks.count)/\(project.tasks.count) Tasks")
-                            .font(.title3.weight(.semibold))
-                            .matchedGeometryEffect(id: "\(project.name)madeText", in: nameSpace)
-                        
+                        CustomProgressViewTasks(made: project.madeTasks.count, total: project.tasks.count)
+                            .matchedGeometryEffect(id: "\(project.name)made", in: nameSpace)
                         
                         HStack{
                             Text("\(project.endTime .formatted(date: .numeric, time:.omitted))")
@@ -132,7 +130,7 @@ struct RowView: View {
                     .padding(15)
                     .matchedGeometryEffect(id: "\(project.name)heart", in: nameSpace)
             }
-            .frame(height: 270)
+            .frame(height: 300)
             .padding(30)
             .offset(x: offset.width)
             .animation(.spring())

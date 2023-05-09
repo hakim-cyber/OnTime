@@ -126,9 +126,8 @@ struct FullRowView: View {
                             }
                             .matchedGeometryEffect(id: "\(project.name)status", in: nameSpace)
                         }
-                        Text("\(project.madeTasks.count)/\(project.tasks.count) Tasks")
-                            .font(.title3.weight(.semibold))
-                            .matchedGeometryEffect(id: "\(project.name)madeText", in: nameSpace)
+                        CustomProgressViewTasks(made: project.madeTasks.count, total: project.tasks.count)
+                            .matchedGeometryEffect(id: "\(project.name)made", in: nameSpace)
                         HStack{
                             Text("\(project.endTime .formatted(date: .numeric, time:.omitted))")
                                 .font(.callout.weight(.light))
