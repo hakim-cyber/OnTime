@@ -32,6 +32,7 @@
 		082CC9282A0AED1400D7F345 /* FireBaseSharedProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9272A0AED1400D7F345 /* FireBaseSharedProjects.swift */; };
 		082CC92D2A0AF01000D7F345 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC92C2A0AF01000D7F345 /* DataManager.swift */; };
 		082CC92F2A0AF1E900D7F345 /* FirebaseTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC92E2A0AF1E900D7F345 /* FirebaseTestView.swift */; };
+		082CC9312A0C43C500D7F345 /* UsersCircleImage .swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9302A0C43C500D7F345 /* UsersCircleImage .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		082CC9272A0AED1400D7F345 /* FireBaseSharedProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseSharedProjects.swift; sourceTree = "<group>"; };
 		082CC92C2A0AF01000D7F345 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		082CC92E2A0AF1E900D7F345 /* FirebaseTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTestView.swift; sourceTree = "<group>"; };
+		082CC9302A0C43C500D7F345 /* UsersCircleImage .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersCircleImage .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		08149EFA2A019280008DA526 = {
 			isa = PBXGroup;
 			children = (
+				082CC9302A0C43C500D7F345 /* UsersCircleImage .swift */,
 				08149F052A019280008DA526 /* OnTime */,
 				08149F042A019280008DA526 /* Products */,
 			);
@@ -246,6 +249,7 @@
 				082CC9162A09929500D7F345 /* ScanView.swift in Sources */,
 				08149F252A0265F8008DA526 /* RowView.swift in Sources */,
 				082CC92F2A0AF1E900D7F345 /* FirebaseTestView.swift in Sources */,
+				082CC9312A0C43C500D7F345 /* UsersCircleImage .swift in Sources */,
 				082CC9282A0AED1400D7F345 /* FireBaseSharedProjects.swift in Sources */,
 				08149F1F2A01A0E5008DA526 /* MainView.swift in Sources */,
 				08149F2E2A044FD7008DA526 /* CustomTabBar.swift in Sources */,
