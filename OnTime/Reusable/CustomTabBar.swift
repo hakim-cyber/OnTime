@@ -23,6 +23,7 @@ struct CustomTabBar: View {
     var body: some View {
         VStack{
             HStack{
+                
                 RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .green, action: {shwAddView = true},image: "plus")
                     .padding(.horizontal)
                 ForEach(Tab.allCases,id:\.rawValue){tab in
@@ -35,7 +36,7 @@ struct CustomTabBar: View {
                             .offset(y: selectedTab == tab ? -10 : 0)
                             .shadow(color: Color.green,radius:selectedTab == tab ? 15 : 0)
                             .onTapGesture{
-                                withAnimation(.easeIn(duration: 0.2)){
+                                withAnimation(.spring()){
                                     selectedTab = tab
                                 }
                             }

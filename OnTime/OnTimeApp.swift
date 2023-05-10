@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct OnTimeApp: App {
     @StateObject var projects = ProjectsArray()
+    
+    init(){
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
            ContentView()

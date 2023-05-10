@@ -18,6 +18,8 @@ struct Project:Codable,Identifiable{
     var tags:[String] = []
     var endTime = Date()
     
+    var usedBy = [User]()
+    
     var madeTasks:[Task]{
         tasks.filter{$0.isMade == true}
     }
