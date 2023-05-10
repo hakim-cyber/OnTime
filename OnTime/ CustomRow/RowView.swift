@@ -91,8 +91,9 @@ struct RowView: View {
                             offset = gesture.translation
                         }
                         .onEnded { gesture in
-                            if gesture.translation.width < -100 {
+                            if gesture.translation.width < -50 {
                                 withAnimation {
+                                    offset.width = -40
                                     showDelete = true
                                 }
                               

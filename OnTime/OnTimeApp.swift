@@ -11,6 +11,7 @@ import Firebase
 @main
 struct OnTimeApp: App {
     @StateObject var projects = ProjectsArray()
+    @StateObject var dataManager = DataManager()
     
     init(){
         FirebaseApp.configure()
@@ -18,6 +19,8 @@ struct OnTimeApp: App {
     var body: some Scene {
         WindowGroup {
            ContentView()
+                .environmentObject(dataManager)
+                
                 
         }
     }

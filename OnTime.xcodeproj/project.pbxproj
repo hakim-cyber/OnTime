@@ -136,9 +136,9 @@
 			children = (
 				082CC9272A0AED1400D7F345 /* FireBaseSharedProjects.swift */,
 				082CC92C2A0AF01000D7F345 /* DataManager.swift */,
+				082CC91C2A099ABE00D7F345 /* ShareView.swift */,
 				082CC92E2A0AF1E900D7F345 /* FirebaseTestView.swift */,
 				082CC9152A09929500D7F345 /* ScanView.swift */,
-				082CC91C2A099ABE00D7F345 /* ShareView.swift */,
 			);
 			path = "Scaning and Sharing";
 			sourceTree = "<group>";

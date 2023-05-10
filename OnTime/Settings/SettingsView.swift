@@ -10,6 +10,7 @@ import CodeScanner
 
 struct SettingsView: View {
     @EnvironmentObject var projects:ProjectsArray
+    @EnvironmentObject var dataManager:DataManager
     @State private var showingEditView = false
     @State private var inputImage:UIImage? = UIImage(named: "default")
     @State private var name = "Unknown"
@@ -123,7 +124,20 @@ struct SettingsView: View {
                 if let decodedData = try? JSONDecoder().decode([Project].self, from: data) {
                     if !decodedData.isEmpty{
                         for decodedProject in decodedData{
-                            projects.projects.append(decodedProject)
+                            
+                            let imageData = projects.settings.image.image().jpegData(compressionQuality: 0.75)
+                            let imageString = imageData?.base64EncodedString() ?? ""
+                            let user = User(name: projects.settings.name, email: projects.settings.email, image:imageString)
+                            
+                            var sharedProject = dataManager.sharedProjects.first(where: {UUID(uuidString: $0.id) == decodedProject.id})!
+                            
+                            sharedProject.users.append(user)
+                            var sharedProjectsdictionary = ["id":sharedProject.id,"users":dataManager.arrayToDictionaries(sharedProject.users)] as [String : Any]
+                            
+                            
+                            dataManager.updateDocumentData(documentID: sharedProject.id, newData: sharedProjectsdictionary)
+                                projects.projects.append(decodedProject)
+                            
                         }
                         projects.saveProjects()
                         

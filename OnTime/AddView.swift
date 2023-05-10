@@ -15,6 +15,7 @@ struct AddView: View {
     @State var dateOfTask = DateOfTask.today
     var change:()->Void
     @EnvironmentObject var projects:ProjectsArray
+    @EnvironmentObject var dataManager:DataManager
     @Environment(\.colorScheme) var colorScheme
 
     @State var selectedProject:Project?
@@ -240,9 +241,19 @@ struct AddView: View {
     func addNewProject(){
         let newProject = Project(name: newProjectName, description: newProjectDescription, tasks: [Task]())
         
+        let imageData = projects.settings.image.image().jpegData(compressionQuality: 0.75)
+        let imageString = imageData?.base64EncodedString() ?? ""
+        let user = User(name: projects.settings.name, email: projects.settings.email, image:imageString)
+        
+        let sharedProject = SharedProject(id: newProject.id.uuidString,users: [user])
+        
+        dataManager.saveSharedProject(sharedProject)
+        
         projects.projects.insert(newProject, at: 0)
         change()
        
+        
+        
         
         
         selectedProject = newProject

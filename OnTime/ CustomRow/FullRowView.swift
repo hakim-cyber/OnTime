@@ -152,22 +152,6 @@ struct FullRowView: View {
                           
                             .matchedGeometryEffect(id: "\(project.name)tags", in: nameSpace)
                             
-                            Spacer()
-                            Button{
-                                withAnimation {
-                                    showaddView = true
-                                }
-                             
-                            }label: {
-                                Image(systemName: "plus")
-                                    .font(.title3.weight(.bold))
-                                    .foregroundColor(.secondary)
-                                    .padding(8)
-                                    .background(.ultraThinMaterial,in:Circle())
-                                   
-                            }
-                           
-                            
                         }
                         Text(project.description)
                             .font(.callout)

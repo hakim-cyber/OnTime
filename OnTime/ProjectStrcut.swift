@@ -18,7 +18,7 @@ struct Project:Codable,Identifiable{
     var tags:[String] = []
     var endTime = Date()
     
-    var usedBy = [User]()
+   
     
     var madeTasks:[Task]{
         tasks.filter{$0.isMade == true}
@@ -91,7 +91,7 @@ class ProjectsArray:ObservableObject{
     var favoritesArray:[Project]{
         return projects.filter{$0.isFavourite}
     }
-    
+  
 @Published var settings = Settings()
     
     init(){
