@@ -89,6 +89,7 @@ class DataManager:ObservableObject{
                 print("Document updated successfully.")
             }
         }
+        fetchProjects()
     }
     
     
