@@ -35,6 +35,7 @@ struct ContentView: View {
                                 if tab == .house{
                                     MainView( showingFull: {showTabBar.toggle()}, showAddView: $showAddView)
                                         .environmentObject(projects)
+                                       
                                         .tag(tab)
                                         
                                     }

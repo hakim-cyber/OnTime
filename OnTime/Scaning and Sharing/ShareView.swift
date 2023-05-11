@@ -10,6 +10,7 @@ import SwiftUI
 struct ShareView: View {
     var allProjects:[Project]
     @Environment(\.colorScheme) var colorScheme
+    
     @State var selectedProjects = [Project]()
     @State private var showQrCodeView = false
     var body: some View {

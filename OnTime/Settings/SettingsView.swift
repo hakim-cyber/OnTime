@@ -91,7 +91,7 @@ struct SettingsView: View {
         .sheet(isPresented: $showScan){
             CodeScannerView(codeTypes:[.qr],showViewfinder: true, shouldVibrateOnSuccess:true, completion: handleScan)
         }
-        .sheet(isPresented: $showShareView){
+        .sheet(isPresented: $showShareView,onDismiss: dataManager.fetchProjects){
             ShareView(allProjects: projects.projects)
         }
         .onAppear{
@@ -123,19 +123,21 @@ struct SettingsView: View {
             if let data = result.string.data(using: .utf8){
                 if let decodedData = try? JSONDecoder().decode([Project].self, from: data) {
                     if !decodedData.isEmpty{
-                        for decodedProject in decodedData{
+                        let notUsedBefore = decodedData.filter{ !checkIfUsed(newProject: $0)}
+                        for decodedProject in notUsedBefore{
                             
                             let imageData = projects.settings.image.image().jpegData(compressionQuality: 0.75)
                             let imageString = imageData?.base64EncodedString() ?? ""
                             let user = User(name: projects.settings.name, email: projects.settings.email, image:imageString)
                             
-                            var sharedProject = dataManager.sharedProjects.first(where: {UUID(uuidString: $0.id) == decodedProject.id})!
-                            
-                            sharedProject.users.append(user)
-                            var sharedProjectsdictionary = ["id":sharedProject.id,"users":dataManager.arrayToDictionaries(sharedProject.users)] as [String : Any]
-                            
-                            
-                            dataManager.updateDocumentData(documentID: sharedProject.id, newData: sharedProjectsdictionary)
+                            if var sharedProject = dataManager.sharedProjects.first(where: {UUID(uuidString: $0.id) == decodedProject.id}){
+                                
+                                sharedProject.users.append(user)
+                                var sharedProjectsdictionary = ["id":sharedProject.id,"users":dataManager.arrayToDictionaries(sharedProject.users)] as [String : Any]
+                                
+                                
+                                dataManager.updateDocumentData(documentID: sharedProject.id, newData: sharedProjectsdictionary)
+                            }
                                 projects.projects.append(decodedProject)
                             
                         }
@@ -148,6 +150,10 @@ struct SettingsView: View {
             print("scanning Error \(error.localizedDescription)")
         }
         
+    }
+    
+    func checkIfUsed(newProject:Project)->Bool{
+        projects.projects.contains(where: {$0.id == newProject.id})
     }
 }
 

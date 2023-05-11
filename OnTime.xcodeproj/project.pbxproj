@@ -80,7 +80,6 @@
 		08149EFA2A019280008DA526 = {
 			isa = PBXGroup;
 			children = (
-				082CC9302A0C43C500D7F345 /* UsersCircleImage .swift */,
 				08149F052A019280008DA526 /* OnTime */,
 				08149F042A019280008DA526 /* Products */,
 			);
@@ -158,6 +157,7 @@
 		082CC92B2A0AEE5C00D7F345 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				082CC9302A0C43C500D7F345 /* UsersCircleImage .swift */,
 				08149F162A019373008DA526 /* features.swift */,
 				08149F2D2A044FD7008DA526 /* CustomTabBar.swift */,
 			);

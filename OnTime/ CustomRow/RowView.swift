@@ -13,6 +13,8 @@ struct RowView: View {
     
     var nameSpace:Namespace.ID
     
+    @EnvironmentObject var dataManager:DataManager
+    
     @Binding var showFull:Bool
     @Binding var showaddView:Bool
    
@@ -125,6 +127,10 @@ struct RowView: View {
                     .padding(15)
                     .matchedGeometryEffect(id: "\(project.name)heart", in: nameSpace)
             }
+            .overlay(alignment:.topTrailing){
+                UsersCircleImage(users: findUsers(of: project))
+                    .matchedGeometryEffect(id: "\(project.name)users", in: nameSpace)
+            }
             .frame(height: 300)
             .padding(30)
             .offset(x: offset.width)
@@ -150,6 +156,14 @@ struct RowView: View {
         }
         
     }
+    
+    func findUsers(of project:Project)->[User]{
+        if  let sharedProject =  dataManager.sharedProjects.first(where: {$0.id == project.id.uuidString}){
+            let users = sharedProject.users
+            return users
+        }
+        return [User]()
+    }
    
 }
 
@@ -159,5 +173,6 @@ struct RowView_Previews: PreviewProvider {
         RowView(project: Project.example,nameSpace: namespace, showFull: .constant(true), showaddView: .constant(false), color: Color.randomColor()){_ in
             
         }
+        .environmentObject(DataManager())
     }
 }
