@@ -10,7 +10,7 @@ import Foundation
 
 struct Project:Codable,Identifiable{
    
-    var id = UUID()
+    let  id:UUID
     let name:String
     let description:String
     var tasks :[Task]
@@ -60,7 +60,7 @@ struct Project:Codable,Identifiable{
             return Color.gray
         }
     }
-    static let example = Project(name: "New ajsajshashaas", description: "Make An App",tasks: [Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar")])
+    static let example = Project(id:UUID(),name: "New ajsajshashaas", description: "Make An App",tasks: [Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar")])
     
 }
 struct Task:Codable,Identifiable{
@@ -96,6 +96,7 @@ class ProjectsArray:ObservableObject{
     
     init(){
         loadProjects()
+        loadSettings()
     }
     func saveProjects(){
         if let encoded = try? JSONEncoder().encode(projects){
@@ -127,6 +128,7 @@ class ProjectsArray:ObservableObject{
        
                 projects.remove(at: indexOfDeleting)
             saveProjects()
+            loadProjects()
           
             
         }

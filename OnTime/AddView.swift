@@ -239,7 +239,7 @@ struct AddView: View {
        
     }
     func addNewProject(){
-        let newProject = Project(name: newProjectName, description: newProjectDescription, tasks: [Task]())
+        let newProject = Project(id:UUID(),name: newProjectName, description: newProjectDescription, tasks: [Task]())
         
         let imageData = projects.settings.image.image().jpegData(compressionQuality: 0.75)
         let imageString = imageData?.base64EncodedString() ?? ""
@@ -247,13 +247,13 @@ struct AddView: View {
         
         let sharedProject = SharedProject(id: newProject.id.uuidString,users: [user])
         
-        dataManager.saveSharedProject(sharedProject)
+       
         
         projects.projects.insert(newProject, at: 0)
         change()
        
         
-        
+        dataManager.saveSharedProject(sharedProject)
         
         
         selectedProject = newProject

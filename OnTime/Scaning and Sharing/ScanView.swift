@@ -43,6 +43,6 @@ struct ScanView: View {
 
 struct ScanView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanView(projects: [Project(name: "name", description: "description", tasks: [Task]())])
+        ScanView(projects: [Project(id:UUID(),name: "name", description: "description", tasks: [Task]())])
     }
 }

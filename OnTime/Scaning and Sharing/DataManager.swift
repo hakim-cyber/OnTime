@@ -54,7 +54,7 @@ class DataManager:ObservableObject{
        }
     
     func fetchProjects(){
-        sharedProjects.removeAll()
+        sharedProjects = []
         
         let ref = db.collection("SharedProjects")
         
