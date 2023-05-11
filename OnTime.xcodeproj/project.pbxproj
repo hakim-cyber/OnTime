@@ -33,6 +33,7 @@
 		082CC92D2A0AF01000D7F345 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC92C2A0AF01000D7F345 /* DataManager.swift */; };
 		082CC92F2A0AF1E900D7F345 /* FirebaseTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC92E2A0AF1E900D7F345 /* FirebaseTestView.swift */; };
 		082CC9312A0C43C500D7F345 /* UsersCircleImage .swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9302A0C43C500D7F345 /* UsersCircleImage .swift */; };
+		082CC9332A0D7FD600D7F345 /* CustomPopOverListusers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9322A0D7FD600D7F345 /* CustomPopOverListusers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		082CC92C2A0AF01000D7F345 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		082CC92E2A0AF1E900D7F345 /* FirebaseTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTestView.swift; sourceTree = "<group>"; };
 		082CC9302A0C43C500D7F345 /* UsersCircleImage .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersCircleImage .swift"; sourceTree = "<group>"; };
+		082CC9322A0D7FD600D7F345 /* CustomPopOverListusers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopOverListusers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				08149F1E2A01A0E5008DA526 /* MainView.swift */,
+				082CC9322A0D7FD600D7F345 /* CustomPopOverListusers.swift */,
 				082CC91E2A0AD3F800D7F345 /* CustomProgressViewTasks.swift */,
 				08149F242A0265F8008DA526 /* RowView.swift */,
 				08149F262A02672E008DA526 /* FullRowView.swift */,
@@ -258,6 +261,7 @@
 				08149F172A019373008DA526 /* features.swift in Sources */,
 				082CC91F2A0AD3F800D7F345 /* CustomProgressViewTasks.swift in Sources */,
 				082CC91D2A099ABE00D7F345 /* ShareView.swift in Sources */,
+				082CC9332A0D7FD600D7F345 /* CustomPopOverListusers.swift in Sources */,
 				08149F092A019280008DA526 /* ContentView.swift in Sources */,
 				08149F212A01A207008DA526 /* FavoritesView.swift in Sources */,
 				08149F2C2A044037008DA526 /* TasksListRow.swift in Sources */,

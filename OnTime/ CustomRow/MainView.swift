@@ -24,6 +24,8 @@ struct MainView: View {
     @State  var selected:Int?
     @State var selectedColor:LinearGradient?
     @State  var showFull = false
+ 
+   
     @Binding var showAddView:Bool
     
     var body: some View {
@@ -71,6 +73,7 @@ struct MainView: View {
                 
                 
             }
+            
            
             if showFull{
                 if selected != nil{
@@ -78,7 +81,7 @@ struct MainView: View {
                       
                                 
                         FullRowView(showaddView: $showAddView,project: $Projects.projects[selected!], nameSpace: nameSpace,color: selectedColor){
-                            withAnimation(.easeOut(duration: 0.3)){
+                            withAnimation(.spring()){
                                 saveSelected()
                                 showingFull()
                                 showFull = false
@@ -89,6 +92,8 @@ struct MainView: View {
                     }
                 }
             }
+            
+         
         }
         .onAppear{
             Projects.loadProjects()
@@ -105,6 +110,7 @@ struct MainView: View {
                 .environmentObject(Projects)
        
         }
+       
     }
     func saveSelected(){
         if let selected = selected{

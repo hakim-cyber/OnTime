@@ -79,6 +79,7 @@ class DataManager:ObservableObject{
             }
         }
     }
+  
     func updateDocumentData(documentID: String, newData: [String: Any]) {
         let docRef = db.collection("SharedProjects").document(documentID)
         

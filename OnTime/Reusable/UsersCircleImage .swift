@@ -43,8 +43,7 @@ struct UsersCircleImage: View {
             }
           
         }
-        .padding(.vertical,10)
-        .padding(.horizontal,60)
+       
     }
     func useImage(text:String)->Image{
         let data = Data(base64Encoded: text) ?? Data()

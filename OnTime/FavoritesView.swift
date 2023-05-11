@@ -17,6 +17,7 @@ struct FavoritesView: View {
     @State var selectedColor:LinearGradient?
     @State  var showFull = false
     @Binding var showAddView:Bool
+   
     
     var body: some View {
         ZStack{

@@ -10,10 +10,12 @@ import SwiftUI
 struct FullRowView: View {
     @Binding var showaddView:Bool
     @Binding var project:Project
-    
+    @EnvironmentObject var dataManager:DataManager
     var nameSpace:Namespace.ID
     var color:LinearGradient
     var close:()-> Void
+    
+    @State var showPopOver = false
     
     var body: some View {
         GeometryReader{geo in
@@ -29,23 +31,28 @@ struct FullRowView: View {
                 .background(color.matchedGeometryEffect(id: "\(project.name)BackgroundColor", in: nameSpace))
                 .ignoresSafeArea()
                 .overlay(alignment: .topTrailing){
-                    Button{
-                        
-                      
-                            close()
-                        
-                         
-                    }label: {
-                        Image(systemName: "xmark")
-                            .font(.body.weight(.bold))
-                            .foregroundColor(.secondary)
-                            .padding(8)
-                            .background(.ultraThinMaterial,in:Circle())
-                            .padding(.horizontal,30)
-                            .padding(.vertical,50)
-                            .ignoresSafeArea()
-                        
-                    }
+                   
+                       
+                        Button{
+                            
+                            withAnimation {
+                                close()
+                            }
+                           
+                            
+                            
+                        }label: {
+                            Image(systemName: "xmark")
+                                .font(.body.weight(.bold))
+                                .foregroundColor(.secondary)
+                                .padding(8)
+                                .background(.ultraThinMaterial,in:Circle())
+                                .padding(.horizontal,30)
+                                .padding(.vertical,50)
+                                .ignoresSafeArea()
+                            
+                        }
+                    
                 }
                 .overlay(alignment:.topLeading){
                     Toggle("", isOn: $project.isFavourite)
@@ -82,7 +89,11 @@ struct FullRowView: View {
                 .frame(height: 560)
                 .position(x: geo.size.width/2, y: geo.size.height/1.35)
                 
-                
+                if showPopOver{
+                    CustomPopOverListusers(users: findUsers(of: project),showPopOver: $showPopOver)
+                        .previewLayout(.sizeThatFits)
+                        .frame(alignment: .top)
+                }
             }
         }
            
@@ -116,17 +127,30 @@ struct FullRowView: View {
                             Spacer()
                             
                             HStack{
+                                UsersCircleImage(users: findUsers(of: project))
+                                    .matchedGeometryEffect(id: "\(project.name)users", in: nameSpace)
+                                    .onTapGesture {
+                                        withAnimation(.spring()) {
+                                            
+                                            showPopOver.toggle()
+                                        }
+                                    }
+                                    Spacer()
                                 Circle()
                                     .fill(project.checkColorOfStatusCircl)
                                     .frame(width: 12,height: 12)
+                                    .matchedGeometryEffect(id: "\(project.name)statusCircle", in: nameSpace)
+                                    
                                 
                                 Text(project.status)
                                     .foregroundColor(project.checkColorOfStatusCircl)
+                                    .matchedGeometryEffect(id: "\(project.name)statusText", in: nameSpace)
                             }
-                            .matchedGeometryEffect(id: "\(project.name)status", in: nameSpace)
+                           
                         }
                         CustomProgressViewTasks(made: project.madeTasks.count, total: project.tasks.count)
                             .matchedGeometryEffect(id: "\(project.name)made", in: nameSpace)
+                            
                         HStack{
                             Text("\(project.endTime .formatted(date: .numeric, time:.omitted))")
                                 .font(.callout.weight(.light))
@@ -186,6 +210,14 @@ struct FullRowView: View {
         )
    
  
+    }
+    
+    func findUsers(of project:Project)->[User]{
+        if  let sharedProject =  dataManager.sharedProjects.first(where: {$0.id == project.id.uuidString}){
+            let users = sharedProject.users
+            return users
+        }
+        return [User]()
     }
     
 }

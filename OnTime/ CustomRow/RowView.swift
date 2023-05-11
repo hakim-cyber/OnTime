@@ -18,9 +18,11 @@ struct RowView: View {
     @Binding var showFull:Bool
     @Binding var showaddView:Bool
    
+   
    var color:LinearGradient
+   
     var deleting:(Project)->Void
-    
+   
     
     @State private var offset = CGSize.zero
     @State private var showDelete = false
@@ -41,15 +43,17 @@ struct RowView: View {
                                 Circle()
                                     .fill(project.checkColorOfStatusCircl)
                                     .frame(width: 12,height: 12)
+                                    .matchedGeometryEffect(id: "\(project.name)statusCircle", in: nameSpace)
                                 
                                 Text(project.status)
                                     .foregroundColor(project.checkColorOfStatusCircl)
+                                    .matchedGeometryEffect(id: "\(project.name)statusText", in: nameSpace)
                             }
-                            .matchedGeometryEffect(id: "\(project.name)status", in: nameSpace)
+                           
                         }
                         CustomProgressViewTasks(made: project.madeTasks.count, total: project.tasks.count)
                             .matchedGeometryEffect(id: "\(project.name)made", in: nameSpace)
-                        
+                          
                         
                         
                     }
@@ -90,7 +94,10 @@ struct RowView: View {
                 .gesture(
                     DragGesture()
                         .onChanged { gesture in
-                            offset = gesture.translation
+                            withAnimation {
+                                offset = gesture.translation
+                            }
+                           
                         }
                         .onEnded { gesture in
                             if gesture.translation.width < -50 {
@@ -130,11 +137,14 @@ struct RowView: View {
             .overlay(alignment:.topTrailing){
                 UsersCircleImage(users: findUsers(of: project))
                     .matchedGeometryEffect(id: "\(project.name)users", in: nameSpace)
+                    .padding(.vertical,10)
+                    .padding(.horizontal,60)
+                
             }
             .frame(height: 300)
             .padding(30)
             .offset(x: offset.width)
-            .animation(.spring(response: 0.7))
+            
             if showDelete{
                 HStack{
                     Spacer()
