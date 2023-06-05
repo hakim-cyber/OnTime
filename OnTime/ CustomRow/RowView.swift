@@ -35,7 +35,7 @@ struct RowView: View {
                     VStack(alignment: .leading, spacing: 12){
                         HStack{
                             Text(project.name)
-                                .font(.largeTitle.weight(.bold))
+                                .font(.system(size: 20).weight(.bold))
                                 .matchedGeometryEffect(id: "\(project.name)name", in: nameSpace)
                                 .frame(maxWidth:.infinity,alignment: .leading)
                             Spacer()

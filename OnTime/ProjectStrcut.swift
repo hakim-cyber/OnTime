@@ -60,7 +60,7 @@ struct Project:Codable,Identifiable{
             return Color.gray
         }
     }
-    static let example = Project(id:UUID(),name: "New ajsajshashaas", description: "Make An App",tasks: [Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar")])
+    static let example = Project(id:UUID(),name: "New skkasalaslkalskksdsdjskdj sdskdjskjsdjskjskdjsd", description: "Make An App",tasks: [Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar"),Task(name: "Hakim", description: "Omar")])
     
 }
 struct Task:Codable,Identifiable{

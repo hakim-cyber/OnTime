@@ -22,6 +22,7 @@ struct CustomTabBar: View {
     @Namespace var namespace
     var body: some View {
         VStack{
+           
             HStack{
                 
                 RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .green, action: {shwAddView = true},image: "plus")
