@@ -15,7 +15,7 @@ struct TasksListRow: View {
         ZStack{
             RoundedRectangle(cornerRadius: 20)
                 .fill(.ultraThinMaterial)
-                .shadow(color: task.isMade ? .green : .black,radius: task.isMade ? 10 : 0)
+                .shadow(color: task.isMade ? .green : .black,radius: task.isMade ? 3 : 0)
                 .frame(height: 100)
             HStack{
                 Toggle("", isOn: $task.isMade)
