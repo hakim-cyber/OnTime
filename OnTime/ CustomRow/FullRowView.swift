@@ -75,19 +75,20 @@ struct FullRowView: View {
                     }
                     .frame(maxWidth: .infinity)
                     
+                    
                 }
                 
                 .padding()
                 .background(
                     Rectangle()
                         .fill(.ultraThinMaterial)
-                        .mask(RoundedRectangle(cornerRadius: 40,style: .continuous))
+                        .roundedCorner(30, corners: [.topLeft,.topRight])
                     
                 )
                 .padding(.horizontal,10)
-                .padding(.vertical,30)
-                .frame(height: 560)
-                .position(x: geo.size.width/2, y: geo.size.height/1.35)
+               
+                .frame(height: UIScreen.main.bounds.size.height / 1.99)
+                .position(x: geo.size.width/2, y: geo.size.height/1.30)
                 
                 if showPopOver{
                     CustomPopOverListusers(users: findUsers(of: project),showPopOver: $showPopOver)
@@ -121,7 +122,7 @@ struct FullRowView: View {
                     VStack(alignment: .leading, spacing: 12){
                         HStack{
                             Text(project.name)
-                                .font(.largeTitle.weight(.bold))
+                                .font(.title3.weight(.bold))
                                 .matchedGeometryEffect(id: "\(project.name)name", in: nameSpace)
                                 .frame(maxWidth:.infinity,alignment: .leading)
                             Spacer()
@@ -190,6 +191,7 @@ struct FullRowView: View {
                     )
                     .padding(.vertical,20)
                     .padding(.horizontal,10)
+                    .frame(height: UIScreen.main.bounds.size.height / 3)
                    
                       
                         
@@ -226,6 +228,7 @@ struct FullRowView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
         FullRowView(showaddView: .constant(false), project: .constant(Project.example), nameSpace: namespace, color: Color.randomColor(), close: {})
+            .environmentObject(DataManager())
             
         
     }

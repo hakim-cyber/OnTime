@@ -35,12 +35,11 @@ struct TasksListRow: View {
                         .strikethrough(task.isMade)
                     
                 }
-                .frame(height: 100)
+                .frame(height: UIScreen.main.bounds.size.height / 6)
                 .padding(10)
             }
-            .padding()
+            .padding(.horizontal)
         }
-        .padding(.vertical,10)
         .padding(.horizontal,5)
         
     }

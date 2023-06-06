@@ -71,10 +71,7 @@ struct AddView: View {
                            
                             Spacer()
                         }
-                        HStack{
-                            
-                            RoundedButtonAddView(text: "", textColor: .black, backgroundColor: .white, action: {},image: "bell.badge")
-                        }
+                       
                     }
                     .padding()
                     HStack{
