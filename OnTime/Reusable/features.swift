@@ -75,7 +75,15 @@ struct CheckMarkToggleStyle: ToggleStyle {
 
 
 
-
+extension View{
+    @ViewBuilder func phoneOnlyNavigationView()->some View{
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            self.navigationViewStyle(.stack)
+        }else{
+            self
+        }
+    }
+}
 import Foundation
 import PhotosUI
 import SwiftUI

@@ -42,6 +42,7 @@ struct TasksListRow: View {
         }
         .padding(.vertical,10)
         .padding(.horizontal,5)
+        
     }
 }
 

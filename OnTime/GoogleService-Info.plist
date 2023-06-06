@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>974885471970-grnfrfto8dcbi5i3t3p6mbs2c622ghso.apps.googleusercontent.com</string>
+	<string>974885471970-u9dufdsihbs3qscfiag6p6t2h8e2kjk7.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.974885471970-grnfrfto8dcbi5i3t3p6mbs2c622ghso</string>
+	<string>com.googleusercontent.apps.974885471970-u9dufdsihbs3qscfiag6p6t2h8e2kjk7</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAcZBw7Lo2qkYC8ecqV0I_EkwEYUhoQ51E</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>me.hakim.Aliyev.OnTime</string>
+	<string>com.hakim.Aliyev.OnTime</string>
 	<key>PROJECT_ID</key>
 	<string>on-time-app-77941</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:974885471970:ios:635c9d0165b5b6010ec0bb</string>
+	<string>1:974885471970:ios:d420e695d8933e3a0ec0bb</string>
 </dict>
 </plist>
