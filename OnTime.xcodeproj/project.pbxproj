@@ -34,6 +34,7 @@
 		082CC9312A0C43C500D7F345 /* UsersCircleImage .swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9302A0C43C500D7F345 /* UsersCircleImage .swift */; };
 		082CC9332A0D7FD600D7F345 /* CustomPopOverListusers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CC9322A0D7FD600D7F345 /* CustomPopOverListusers.swift */; };
 		082E19BF2A2F3F20006FBDDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 082E19BE2A2F3F20006FBDDD /* GoogleService-Info.plist */; };
+		08F23F772A310E8D004BC7E0 /* Custom Info Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23F762A310E8D004BC7E0 /* Custom Info Bubble.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		082CC9302A0C43C500D7F345 /* UsersCircleImage .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersCircleImage .swift"; sourceTree = "<group>"; };
 		082CC9322A0D7FD600D7F345 /* CustomPopOverListusers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopOverListusers.swift; sourceTree = "<group>"; };
 		082E19BE2A2F3F20006FBDDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		08F23F762A310E8D004BC7E0 /* Custom Info Bubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Info Bubble.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				08149F1E2A01A0E5008DA526 /* MainView.swift */,
+				08F23F762A310E8D004BC7E0 /* Custom Info Bubble.swift */,
 				082CC9322A0D7FD600D7F345 /* CustomPopOverListusers.swift */,
 				082CC91E2A0AD3F800D7F345 /* CustomProgressViewTasks.swift */,
 				08149F242A0265F8008DA526 /* RowView.swift */,
@@ -257,6 +260,7 @@
 				08149F1F2A01A0E5008DA526 /* MainView.swift in Sources */,
 				08149F2E2A044FD7008DA526 /* CustomTabBar.swift in Sources */,
 				082CC92D2A0AF01000D7F345 /* DataManager.swift in Sources */,
+				08F23F772A310E8D004BC7E0 /* Custom Info Bubble.swift in Sources */,
 				082CC9142A09881200D7F345 /* SettingsEditView.swift in Sources */,
 				08149F172A019373008DA526 /* features.swift in Sources */,
 				082CC91F2A0AD3F800D7F345 /* CustomProgressViewTasks.swift in Sources */,
@@ -400,6 +404,7 @@
 				DEVELOPMENT_TEAM = 4NLRT8KSZR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need To Scan Qr Code";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to use your Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -437,6 +442,7 @@
 				DEVELOPMENT_TEAM = 4NLRT8KSZR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need To Scan Qr Code";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to use your Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

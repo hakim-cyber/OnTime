@@ -8,12 +8,14 @@
 import SwiftUI
 
 
+
 struct ContentView: View {
    @StateObject var projects = ProjectsArray()
     @EnvironmentObject var dataManager:DataManager
     @State private var selectedTab:Tab = .house
     @State var showTabBar = true
     @State var showAddView = false
+    @AppStorage("showQuideMain") var showQuideMain = true
     
     @State var startX:CGFloat = UIScreen.main.bounds.width * -0.20
     @State var currentDragOffsetX:CGFloat = 0
@@ -72,6 +74,11 @@ struct ContentView: View {
                 showTabBar = true
                 projects.loadProjects()
             }
+            .overlay{
+                if showQuideMain{
+                    
+                }
+                   }
           
            
         }

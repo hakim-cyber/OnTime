@@ -14,6 +14,8 @@ struct MainView: View {
     @EnvironmentObject var Projects:ProjectsArray
     @EnvironmentObject var dataManager:DataManager
     
+  
+    
     @Environment(\.colorScheme) var colorSheme
     var showFavourite:Bool?
     var showingFull:()->Void
@@ -98,6 +100,7 @@ struct MainView: View {
         .onAppear{
             Projects.loadProjects()
         }
+       
         .fullScreenCover(isPresented: $showAddView){
            
                 AddView( ){
