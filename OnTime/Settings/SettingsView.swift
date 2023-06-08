@@ -13,8 +13,8 @@ struct SettingsView: View {
     @EnvironmentObject var dataManager:DataManager
     @State private var showingEditView = false
     @State private var inputImage:UIImage? = UIImage(named: "default")
-    @State private var name = "Unknown"
-    @State private var email = "unknown@email.com"
+    @State private var name = ""
+    @State private var email = ""
     
     @State private var showScan = false
     @State private var showShareView = false
@@ -40,9 +40,9 @@ struct SettingsView: View {
                     .onTapGesture {
                         showingEditView = true
                     }
-                 Text(name)
+                Text(name == "" ? "YourName" : name)
                     .font(.title.weight(.bold))
-                Text(email)
+                Text(email == "" ? "unknown@email.com" : email)
                    .font(.caption.weight(.semibold))
                    .foregroundColor(.secondary)
                 Button{
@@ -161,6 +161,7 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
             .environmentObject(ProjectsArray())
+            .environmentObject(DataManager())
     }
 }
 

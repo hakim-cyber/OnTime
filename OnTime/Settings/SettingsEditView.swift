@@ -13,6 +13,9 @@ struct SettingsEditView: View {
     @Binding var image:UIImage?
     
   
+    
+    
+  
     @State var showPicker = false
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme

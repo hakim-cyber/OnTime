@@ -79,9 +79,9 @@ struct Task:Codable,Identifiable{
     }
 }
 struct Settings:Codable{
-    var name = "YourName"
+    var name = ""
     var image:ImageWrapper = ImageWrapper(UIImage(named: "default")!)
-    var email:String = "unknown@email.com"
+    var email:String = ""
 }
 
 class ProjectsArray:ObservableObject{

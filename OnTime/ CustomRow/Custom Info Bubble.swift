@@ -7,11 +7,26 @@
 
 import SwiftUI
 
+
 struct customBubbleInfo:View {
+    
+    
+    
     var body: some View {
         VStack{
+           Circle()
+                .stroke(.gray)
+            
             
         }
         
+    }
+}
+
+struct customBubbleInfo_Previews: PreviewProvider {
+    static var previews: some View {
+        customBubbleInfo()
+            
+            
     }
 }
