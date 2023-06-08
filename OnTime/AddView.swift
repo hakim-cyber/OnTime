@@ -96,7 +96,7 @@ struct AddView: View {
                     }
                     HStack{
                         VStack(alignment: .leading){
-                            Text("Title")
+                            Text("Task")
                                 .font(.system(.headline, design: .monospaced))
                                 .fontWeight(.light)
                                 .padding()
@@ -154,6 +154,7 @@ struct AddView: View {
                             }
                             
                         }
+                        
                       
                     }
                     
