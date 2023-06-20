@@ -132,6 +132,7 @@ class ProjectsArray:ObservableObject{
             DispatchQueue.main.async {
                 
                 self.projects.remove(at: indexOfDeleting)
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(project.id.uuidString)"])
                 self.saveProjects()
                 self.loadProjects()
             }

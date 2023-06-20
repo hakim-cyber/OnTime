@@ -293,7 +293,7 @@ struct AddView: View {
                 content.sound = UNNotificationSound.defaultCriticalSound(withAudioVolume: Float(80))
                 if calculateTimeLeft(date: project.endTime ) != 0{
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval:TimeInterval(calculateTimeLeft(date: project.endTime ))   , repeats: false)
-                    let request = UNNotificationRequest(identifier: "\(project.name)", content: content, trigger: trigger)
+                    let request = UNNotificationRequest(identifier: "\(project.id.uuidString)", content: content, trigger: trigger)
                     
                     UNUserNotificationCenter.current().add(request)
                     print("notification requested")
