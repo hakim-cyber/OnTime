@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 enum DateOfTask{
     case today,tomorrow,thisWeek,thisMonth,thisYear
 }
@@ -52,6 +53,10 @@ struct AddView: View {
                 }
                 VStack{
                     VStack(alignment: .leading){
+                        Text("End Of Project")
+                            .font(.system(.headline, design: .monospaced))
+                            .fontWeight(.light)
+                            .padding()
                         HStack{
                             RoundedButtonAddView(text: "Today", textColor: dateOfTask == .today ? .white : .black, backgroundColor: dateOfTask == .today ? .black : .white, action: {withAnimation{dateOfTask = .today}})
                             RoundedButtonAddView(text: "Tomorrow", textColor: dateOfTask == .tomorrow ? .white : .black, backgroundColor: dateOfTask == .tomorrow ? .black : .white, action: {withAnimation{dateOfTask = .tomorrow}})
@@ -209,7 +214,6 @@ struct AddView: View {
                 let task = Task(name: nameOfTask, description: descriptionOfTask)
                 
                 projects.projects[indexOfProject].tasks.append(task)
-                projects.projects[indexOfProject].endTime = calculateDateOfTask()
                 change()
             }
         }
@@ -237,7 +241,7 @@ struct AddView: View {
        
     }
     func addNewProject(){
-        let newProject = Project(id:UUID(),name: newProjectName, description: newProjectDescription, tasks: [Task]())
+        let newProject = Project(id:UUID(),name: newProjectName, description: newProjectDescription, tasks: [Task](),endTime: calculateDateOfTask())
         
         let imageData = projects.settings.image.image().jpegData(compressionQuality: 0.75)
         let imageString = imageData?.base64EncodedString() ?? ""
@@ -245,19 +249,65 @@ struct AddView: View {
         
         let sharedProject = SharedProject(id: newProject.id.uuidString,users: [user])
         
-       
-        
-        projects.projects.insert(newProject, at: 0)
-        change()
-       
-        
-        dataManager.saveSharedProject(sharedProject)
-        
-        
-        selectedProject = newProject
-        
-        newProjectName = ""
-        newProjectDescription = ""
+        scheduleNotification(project: newProject){
+            
+            projects.projects.insert(newProject, at: 0)
+            
+            
+            
+            
+            
+            change()
+            
+            
+            dataManager.saveSharedProject(sharedProject)
+            
+            
+            selectedProject = newProject
+            
+            newProjectName = ""
+            newProjectDescription = ""
+        }
+    }
+    func calculateTimeLeft(date:Date)->Int{
+        let calendar = Calendar.current
+        let timeleft = calendar.dateComponents([.second], from: Date(),to: date)
+        if let seconds = timeleft.second{
+           
+                return max(0, seconds)
+            // Return a positive value, or zero if the future date has already passed
+               } else {
+                   return 0 // Return zero if there was an error in calculating the seconds
+               }
+       }
+   
+    func scheduleNotification(project:Project, completion: @escaping ()->Void){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("All set!")
+                let user = projects.settings.name
+                let content = UNMutableNotificationContent()
+                                    content.title = "Hey \(user)!"
+               
+                content.body = "You need to complete  project \(project.name.uppercased())!!!"
+                content.sound = UNNotificationSound.defaultCriticalSound(withAudioVolume: Float(80))
+                if calculateTimeLeft(date: project.endTime ) != 0{
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval:TimeInterval(calculateTimeLeft(date: project.endTime ))   , repeats: false)
+                    let request = UNNotificationRequest(identifier: "\(project.name)", content: content, trigger: trigger)
+                    
+                    UNUserNotificationCenter.current().add(request)
+                    print("notification requested")
+                    completion()
+                }else{
+                    completion()
+                }
+               
+                
+            } else if let error = error {
+                print(error.localizedDescription)
+                completion()
+            }
+        }
     }
     func addNewTag(){
         if selectedProject != nil{

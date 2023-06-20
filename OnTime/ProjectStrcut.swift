@@ -112,23 +112,29 @@ class ProjectsArray:ObservableObject{
     func loadProjects(){
         if let data = UserDefaults.standard.data(forKey: saveKey){
             if let decoded = try? JSONDecoder().decode([Project].self, from: data){
-                projects = decoded
+                DispatchQueue.main.async {
+                    self.projects = decoded
+                }
             }
         }
     }
     func loadSettings(){
         if let data = UserDefaults.standard.data(forKey: settingsSaveKey){
             if let decoded = try? JSONDecoder().decode(Settings.self, from: data){
-                settings = decoded
+                DispatchQueue.main.async {
+                    self.settings = decoded
+                }
             }
         }
     }
     func deleteProject(project:Project){
         if let indexOfDeleting = projects.firstIndex(where: {$0.id == project.id}){
-       
-                projects.remove(at: indexOfDeleting)
-            saveProjects()
-            loadProjects()
+            DispatchQueue.main.async {
+                
+                self.projects.remove(at: indexOfDeleting)
+                self.saveProjects()
+                self.loadProjects()
+            }
           
             
         }

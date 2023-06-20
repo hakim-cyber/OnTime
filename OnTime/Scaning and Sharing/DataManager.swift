@@ -54,7 +54,10 @@ class DataManager:ObservableObject{
        }
     
     func fetchProjects(){
-        sharedProjects = []
+        DispatchQueue.main.async {
+            self.sharedProjects = []
+        }
+       
         
         let ref = db.collection("SharedProjects")
         
